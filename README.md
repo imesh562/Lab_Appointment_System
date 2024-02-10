@@ -1,7 +1,6 @@
 # Lab_Appointment_System
 
-Tech Stack
-  Java, Bootstrap
+Tech Stack - Java, Bootstrap
   
 How to run the project
   Make sure you have installed a JDK.
