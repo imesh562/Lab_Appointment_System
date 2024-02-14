@@ -9,16 +9,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Made changes to project to work with STS.">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/images/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/images/scientist.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Created login &amp; Registration UI's">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/requests/UserRegistrationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/data_mapper/DataMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/filters/SessionFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/signup/images/register.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/signup/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/database/MySqlDataSourceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/database/MySqlDataSourceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/login/images/bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/bg.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +37,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Jsp File" />
         <option value="Class" />
       </list>
     </option>
@@ -63,6 +72,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -86,7 +98,7 @@
     "Tomcat Server.index.jsp.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/webapp",
+    "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/webapp/assets/signup",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,8 +118,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/signup" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
       <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -134,7 +150,9 @@
       <updated>1707586062398</updated>
       <workItem from="1707586064491" duration="14529000" />
       <workItem from="1707632916937" duration="843000" />
-      <workItem from="1707638963506" duration="17304000" />
+      <workItem from="1707638963506" duration="17565000" />
+      <workItem from="1707836226462" duration="2517000" />
+      <workItem from="1707875952700" duration="26783000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -184,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707599092316</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created login &amp; Registration UI's">
+      <option name="closed" value="true" />
+      <created>1707664992691</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707664992691</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +222,7 @@
     <MESSAGE value="Updated the jUnit version" />
     <MESSAGE value="Added implementations for Database connection." />
     <MESSAGE value="Made changes to project to work with STS." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made changes to project to work with STS." />
+    <MESSAGE value="Created login &amp; Registration UI's" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created login &amp; Registration UI's" />
   </component>
 </project>

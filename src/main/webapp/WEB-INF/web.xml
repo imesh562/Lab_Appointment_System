@@ -3,9 +3,48 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Sign Up</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+  <display-name>ABC Labs</display-name>
+
+
+  <!-- Filters -->
+  <filter>
+    <filter-name>SessionFilter</filter-name>
+    <filter-class>com.imesh.lab.utils.filters.SessionFilter</filter-class>
+  </filter>
+
+  <!-- Filter Mappings-->
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </filter-mapping>
+
+  <!-- Controllers-->
+  <servlet>
+    <servlet-name>HomeController</servlet-name>
+    <display-name>HomeController</display-name>
+    <servlet-class>com.imesh.lab.controllers.HomeController</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>RegistrationController</servlet-name>
+    <display-name>RegistrationController</display-name>
+    <servlet-class>com.imesh.lab.controllers.RegistrationController</servlet-class>
+  </servlet>
+
+  <!-- Controller Mapping-->
+  <servlet-mapping>
+    <servlet-name>HomeController</servlet-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RegistrationController</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
 </web-app>
 
