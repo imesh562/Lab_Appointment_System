@@ -43,4 +43,23 @@
         </form>
     </div>
 </body>
+<script defer type="module">
+    import Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/+esm';
+
+    const message = '<%= request.getAttribute("message") %>';
+    const title = '<%= request.getAttribute("title") %>';
+    const icon = '<%= request.getAttribute("icon") %>';
+    if (message !== "null") {
+        document.addEventListener('DOMContentLoaded', () => {
+            Swal.fire({
+                title: title,
+                text: message,
+                icon: icon,
+                confirmButtonText: 'Close'
+            }).then(() => {
+                window.location.replace("signup.jsp")
+            })
+        })
+    }
+</script>
 </html>

@@ -36,13 +36,15 @@
 <script defer type="module">
     import Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/+esm';
 
-    const error = '<%= request.getAttribute("error") %>';
-    if (error !== "null") {
+    const message = '<%= request.getAttribute("message") %>';
+    const title = '<%= request.getAttribute("title") %>';
+    const icon = '<%= request.getAttribute("icon") %>';
+    if (message !== "null") {
         document.addEventListener('DOMContentLoaded', () => {
             Swal.fire({
-                title: 'Operation Failed.',
-                text: error,
-                icon: 'error',
+                title: title,
+                text: message,
+                icon: icon,
                 confirmButtonText: 'Close'
             }).then(() => {
                 window.location.replace("login.jsp")

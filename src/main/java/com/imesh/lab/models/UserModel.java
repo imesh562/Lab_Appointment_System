@@ -1,8 +1,8 @@
-package com.imesh.lab.models.requests;
+package com.imesh.lab.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserRegistrationRequest {
+public class UserModel {
 
     @SerializedName("first-name")
     private String firstName;
