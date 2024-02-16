@@ -3,19 +3,23 @@ package com.imesh.lab.models;
 import com.google.gson.annotations.SerializedName;
 
 public class UserModel {
-
-    @SerializedName("first-name")
+    @SerializedName("id")
+    private int id;
+    @SerializedName("first_name")
     private String firstName;
-    @SerializedName("last-name")
+    @SerializedName("last_name")
     private String lastName;
-    @SerializedName("e-mail")
+    @SerializedName("e_mail")
     private String eMail;
-    @SerializedName("phone-number")
+    @SerializedName("phone_number")
     private String phoneNumber;
     @SerializedName("password")
     private String password;
-    @SerializedName("confirm-password")
+    @SerializedName("confirm_password")
     private String confirmPassword;
+
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
 
     public String getFirstName() { return firstName; }
     public void setFirstName(String value) { this.firstName = value; }

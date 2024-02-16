@@ -7,6 +7,6 @@ import java.sql.SQLException;
 public interface AuthenticationDao {
 
     public boolean registerCustomer(UserModel userModel) throws SQLException, ClassNotFoundException;
-    public int generateCustomerCode() throws SQLException, ClassNotFoundException;
+    public int generateUserCode() throws SQLException, ClassNotFoundException;
 
 }

@@ -1,6 +1,7 @@
 package com.imesh.lab.controllers;
 
 import com.google.gson.Gson;
+import com.imesh.lab.models.CommonMessageModel;
 import com.imesh.lab.models.UserModel;
 import com.imesh.lab.services.AuthenticationService;
 import com.imesh.lab.utils.data_mapper.DataMapper;
@@ -19,6 +20,10 @@ public class RegistrationController extends HttpServlet {
         return DataMapper.getDataMapper();
     }
 
+    private static EmailSender getEmailSender() {
+        return EmailSender.getEmailSender();
+    }
+
     private static AuthenticationService getAuthenticationService() {
         return AuthenticationService.getService();
     }
@@ -33,31 +38,32 @@ public class RegistrationController extends HttpServlet {
     }
 
     void registerUser(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        String message = null;
-        boolean hasErrored = false;
+        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false);
         try {
             UserModel userData = new Gson().fromJson(getDataMapper().mapData(req), UserModel.class);
+            userData.setId(getAuthenticationService().generateUserCode());
 
-            boolean isCreated = getAuthenticationService().registerUser(userData);
-            if (!isCreated) {
-                hasErrored = true;
-                message = "Something went wrong.";
-            } else {
-                EmailSender.sendMail("Imesh562@gmail.com", "Test Subject", "This is a test email from Java.");
-                message = "We have sent you an E-mail. Please check yor email and login.";
+            message = getAuthenticationService().registerCustomer(userData);
+            if (message.isSuccess()) {
+                getEmailSender().sendMail(userData.getEMail(), "Welcome to ABC Laboratories",
+                        "Dear " + userData.getFirstName() + ",\n" +
+                                "We're providing you with your login ID to access ABC Laboratory:\n" +
+                                "\n" +
+                                "Login ID: " + userData.getId() + "\n" +
+                                "\n" +
+                                "If you have any questions or need further assistance, please don't hesitate to reach out to our support team.");
             }
         } catch (ClassNotFoundException | SQLException e) {
-            hasErrored = true;
-            message = "Something went wrong.";
+            message = new CommonMessageModel("Something went wrong.", false);
             e.printStackTrace();
         } finally {
-            req.setAttribute("message", message);
-            if (hasErrored) {
+            req.setAttribute("message", message.getMessage());
+            if (!message.isSuccess()) {
                 req.setAttribute("title", "Operation Failed.");
                 req.setAttribute("icon", "error");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/signup.jsp");
                 requestDispatcher.forward(req, res);
-            } else{
+            } else {
                 req.setAttribute("title", "Operation Success.");
                 req.setAttribute("icon", "success");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");

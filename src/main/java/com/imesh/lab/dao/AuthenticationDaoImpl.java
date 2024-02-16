@@ -19,10 +19,10 @@ public class AuthenticationDaoImpl implements AuthenticationDao {
     @Override
     public boolean registerCustomer(UserModel userModel) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
-        String query = "INSERT INTO User (id, first_name, last_name, password, email, mobile) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO User (id, first_name, last_name, password, e_mail, phone_number) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
 
-        statement.setInt(1, generateCustomerCode());
+        statement.setInt(1, userModel.getId());
         statement.setString(2, userModel.getFirstName());
         statement.setString(3, userModel.getLastName());
         statement.setString(4, BCrypt.hashpw(userModel.getPassword(), BCrypt.gensalt()));
@@ -37,7 +37,7 @@ public class AuthenticationDaoImpl implements AuthenticationDao {
     }
 
     @Override
-    public int generateCustomerCode() throws SQLException, ClassNotFoundException {
+    public int generateUserCode() throws SQLException, ClassNotFoundException {
         Random random = new Random();
         StringBuilder sb = new StringBuilder(8);
         for (int i = 0; i < 8; i++) {
@@ -52,7 +52,7 @@ public class AuthenticationDaoImpl implements AuthenticationDao {
         if (result.next()) {
             int count = result.getInt("count");
             if (count > 0) {
-                generateCustomerCode();
+                generateUserCode();
             } else {
                 return Integer.parseInt(sb.toString());
             }

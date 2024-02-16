@@ -9,22 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Completed Pre Login UI designing and partially finished registration.">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/mail/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added Email sending service.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/CommonMessageModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/requests/UserRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/database/MySqlDataSourceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/database/MySqlDataSourceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/mail/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/mail/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +164,7 @@
       <workItem from="1707632916937" duration="843000" />
       <workItem from="1707638963506" duration="17565000" />
       <workItem from="1707836226462" duration="2517000" />
-      <workItem from="1707875952700" duration="46759000" />
+      <workItem from="1707875952700" duration="53973000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -237,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707949682505</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Email sending service.">
+      <option name="closed" value="true" />
+      <created>1708026710754</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708026710754</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +252,7 @@
     <MESSAGE value="Made changes to project to work with STS." />
     <MESSAGE value="Created login &amp; Registration UI's" />
     <MESSAGE value="Completed Pre Login UI designing and partially finished registration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed Pre Login UI designing and partially finished registration." />
+    <MESSAGE value="Added Email sending service." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Email sending service." />
   </component>
 </project>

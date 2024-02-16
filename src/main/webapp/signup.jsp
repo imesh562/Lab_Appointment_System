@@ -15,19 +15,19 @@
             <input type="hidden" name="action-type" value="Register">
             <h1>Register</h1>
             <div class="input-box">
-                <input type="text" placeholder="First Name" name="first-name" required>
+                <input type="text" placeholder="First Name" name="first_name" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Last Name" name="last-name" required>
+                <input type="text" placeholder="Last Name" name="last_name" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input placeholder="E-mail" name="e-mail" type="email" required>
+                <input placeholder="E-mail" name="e_mail" type="email" required>
                 <i class='bx bxs-envelope' ></i>
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Phone Number" name="phone-number" required>
+                <input type="text" placeholder="Phone Number" name="phone_number" required>
                 <i class='bx bxs-phone' ></i>
             </div>
             <div class="input-box">
@@ -35,7 +35,7 @@
                 <i class='bx bxs-lock-alt' ></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Confirm Password" name="confirm-password" required>
+                <input type="password" placeholder="Confirm Password" name="confirm_password" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
 
@@ -56,8 +56,6 @@
                 text: message,
                 icon: icon,
                 confirmButtonText: 'Close'
-            }).then(() => {
-                window.location.replace("signup.jsp")
             })
         })
     }
