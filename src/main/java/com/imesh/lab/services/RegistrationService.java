@@ -1,29 +1,30 @@
 package com.imesh.lab.services;
 
-import com.imesh.lab.dao.AuthenticationDao;
-import com.imesh.lab.dao.AuthenticationDaoImpl;
+import com.imesh.lab.dao.RegistrationDao;
+import com.imesh.lab.dao.RegistrationDaoImpl;
 import com.imesh.lab.models.CommonMessageModel;
 import com.imesh.lab.models.UserModel;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AuthenticationService {
-    private static AuthenticationService authenticationService;
+public class RegistrationService {
+    private static RegistrationService registrationService;
 
-    public static synchronized AuthenticationService getService() {
-        if (authenticationService == null) {
-            authenticationService = new AuthenticationService();
+    public static synchronized RegistrationService getService() {
+        if (registrationService == null) {
+            registrationService = new RegistrationService();
         }
-        return authenticationService;
+        return registrationService;
     }
 
-    private AuthenticationDao getAuthenticationDao() {
-        return new AuthenticationDaoImpl();
+    private RegistrationDao getRegistrationDao() {
+        return new RegistrationDaoImpl();
     }
 
-    public CommonMessageModel registerCustomer(UserModel userModel) throws ClassNotFoundException, SQLException {
+    public CommonMessageModel registerCustomer(UserModel userModel) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern emailPattern = Pattern.compile(regex);
         Matcher emailMatcher = emailPattern.matcher(userModel.getEMail());
@@ -40,16 +41,22 @@ public class AuthenticationService {
         } else if (!(userModel.getPassword().length() >= 6 && userModel.getPassword().length() <= 24)){
             return new CommonMessageModel("Password length must be between 6 and 24 characters.", false);
         } else if(!userModel.getPassword().matches(".*[A-Z].*") || !userModel.getPassword().matches(".*\\d.*")){
-            return new CommonMessageModel("Password doesn't meet the criteria: must contain at least one uppercase letter and one number.", false);
+            return new CommonMessageModel("Password does not meet the criteria: must contain at least one uppercase letter and one number.", false);
         }else if(!userModel.getPassword().equals(userModel.getConfirmPassword())){
-            return new CommonMessageModel("Password doesn't match", false);
+            return new CommonMessageModel("Passwords does not match", false);
+        }else if(getRegistrationDao().checkIfUserExists(userModel.getEMail(), userModel.getPhoneNumber())){
+            return new CommonMessageModel("User already with the same Email or Phone Number", false);
         } else {
-            getAuthenticationDao().registerCustomer(userModel);
-            return new CommonMessageModel("We have sent you an E-mail. Please check your email for the login information.", true);
+            boolean isSuccess = getRegistrationDao().registerCustomer(userModel);
+            if(isSuccess){
+                return new CommonMessageModel("We have sent you an E-mail. Please check your email for the login information.", true);
+            } else {
+                return new CommonMessageModel("Something went wrong.", false);
+            }
         }
     }
 
     public int generateUserCode() throws ClassNotFoundException, SQLException {
-        return getAuthenticationDao().generateUserCode();
+        return getRegistrationDao().generateUserCode();
     }
 }

@@ -3,7 +3,7 @@ package com.imesh.lab.controllers;
 import com.google.gson.Gson;
 import com.imesh.lab.models.CommonMessageModel;
 import com.imesh.lab.models.UserModel;
-import com.imesh.lab.services.AuthenticationService;
+import com.imesh.lab.services.RegistrationService;
 import com.imesh.lab.utils.data_mapper.DataMapper;
 import com.imesh.lab.utils.mail.EmailSender;
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class RegistrationController extends HttpServlet {
@@ -24,8 +25,8 @@ public class RegistrationController extends HttpServlet {
         return EmailSender.getEmailSender();
     }
 
-    private static AuthenticationService getAuthenticationService() {
-        return AuthenticationService.getService();
+    private static RegistrationService getRegistrationService() {
+        return RegistrationService.getService();
     }
 
     @Override
@@ -41,9 +42,9 @@ public class RegistrationController extends HttpServlet {
         CommonMessageModel message = new CommonMessageModel("Something went wrong.", false);
         try {
             UserModel userData = new Gson().fromJson(getDataMapper().mapData(req), UserModel.class);
-            userData.setId(getAuthenticationService().generateUserCode());
+            userData.setId(getRegistrationService().generateUserCode());
 
-            message = getAuthenticationService().registerCustomer(userData);
+            message = getRegistrationService().registerCustomer(userData);
             if (message.isSuccess()) {
                 getEmailSender().sendMail(userData.getEMail(), "Welcome to ABC Laboratories",
                         "Dear " + userData.getFirstName() + ",\n" +
@@ -53,7 +54,7 @@ public class RegistrationController extends HttpServlet {
                                 "\n" +
                                 "If you have any questions or need further assistance, please don't hesitate to reach out to our support team.");
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
             message = new CommonMessageModel("Something went wrong.", false);
             e.printStackTrace();
         } finally {

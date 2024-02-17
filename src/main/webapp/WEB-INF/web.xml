@@ -36,6 +36,12 @@
     <servlet-class>com.imesh.lab.controllers.RegistrationController</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>LoginController</servlet-name>
+    <display-name>LoginController</display-name>
+    <servlet-class>com.imesh.lab.controllers.LoginController</servlet-class>
+  </servlet>
+
   <!-- Controller Mapping-->
   <servlet-mapping>
     <servlet-name>HomeController</servlet-name>
@@ -45,6 +51,11 @@
   <servlet-mapping>
     <servlet-name>RegistrationController</servlet-name>
     <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
 </web-app>
 
