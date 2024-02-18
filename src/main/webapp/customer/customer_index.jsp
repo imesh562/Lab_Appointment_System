@@ -9,6 +9,5 @@
     <input type="hidden" name="action-type" value="Logout">
     <button type="submit">Logout</button>
 </form>
-<a href="customer/cus2.jsp">Goto..</a>
 </body>
 </html>
