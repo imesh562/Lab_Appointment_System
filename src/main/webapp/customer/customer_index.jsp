@@ -1,9 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    response.addHeader("Pragma", "no-cache");
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setDateHeader("Expires", 0);
-%>
 <html>
 <head>
     <title>Home</title>
@@ -14,5 +9,6 @@
     <input type="hidden" name="action-type" value="Logout">
     <button type="submit">Logout</button>
 </form>
+<a href="customer/cus2.jsp">Goto..</a>
 </body>
 </html>

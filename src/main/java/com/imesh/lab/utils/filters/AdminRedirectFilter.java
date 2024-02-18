@@ -15,10 +15,13 @@ public class AdminRedirectFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        int userType = (int) req.getSession().getAttribute("user_type");
-        if(userType == 1){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("../admin/admin_index.jsp");
-            requestDispatcher.forward(req, res);
+        boolean isUserLogged = req.getSession().getAttribute("id") != null;
+        if (isUserLogged) {
+            int userType = (int) req.getSession().getAttribute("user_type");
+            if(userType == 1){
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("../admin/admin_index.jsp");
+                requestDispatcher.forward(req, res);
+            }
         }
 
         chain.doFilter(request, response);

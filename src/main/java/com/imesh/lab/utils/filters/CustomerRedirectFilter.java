@@ -14,10 +14,13 @@ public class CustomerRedirectFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        int userType = (int) req.getSession().getAttribute("user_type");
-        if(userType == 2){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("../customer/customer_index.jsp");
-            requestDispatcher.forward(req, res);
+        boolean isUserLogged = req.getSession().getAttribute("id") != null;
+        if (isUserLogged) {
+            int userType = (int) req.getSession().getAttribute("user_type");
+            if(userType == 2){
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("../customer/customer_index.jsp");
+                requestDispatcher.forward(req, res);
+            }
         }
 
         chain.doFilter(request, response);
