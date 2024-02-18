@@ -51,7 +51,13 @@ public class LoginController extends HttpServlet {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
                 requestDispatcher.forward(req, res);
             } else {
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+                int userType = (int) req.getSession().getAttribute("user_type");
+                RequestDispatcher requestDispatcher = null;
+                if (userType == 1) {
+                    requestDispatcher = req.getRequestDispatcher("admin/admin_index.jsp");
+                } else {
+                    requestDispatcher = req.getRequestDispatcher("customer/customer_index.jsp");
+                }
                 requestDispatcher.forward(req, res);
             }
         }

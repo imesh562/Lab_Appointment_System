@@ -9,29 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added back end validations to registration.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/LoginDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/LoginDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/LoginModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/LoginService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/encrypter/HashPassword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/login-js.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/signup/signup-js.js" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Completed the Login &amp; Registration features.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/filters/AdminRedirectFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/filters/CustomerRedirectFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/filters/NoCacheFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/admin_index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/customer/customer_index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/RegistrationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/RegistrationDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/LoginDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/LoginDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/RegistrationDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/RegistrationDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/filters/SessionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/filters/SessionFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/login-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/signup/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/signup/signup-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +34,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Interface" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -103,7 +101,7 @@
     "Smart Tomcat.TomCat 9.executor": "Run",
     "Tomcat Server.Tomcat 9.0.85.executor": "Run",
     "Tomcat Server.index.jsp.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "customer__section__dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/webapp/assets/signup",
     "node.js.detected.package.eslint": "true",
@@ -130,7 +128,13 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/customer" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/admin" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/images" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.imesh.lab.utils.filters" />
+      <recent name="com.imesh.lab.controllers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -178,7 +182,8 @@
       <workItem from="1707632916937" duration="843000" />
       <workItem from="1707638963506" duration="17565000" />
       <workItem from="1707836226462" duration="2517000" />
-      <workItem from="1707875952700" duration="84325000" />
+      <workItem from="1707875952700" duration="84501000" />
+      <workItem from="1708274093478" duration="12455000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -260,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708112501716</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Completed the Login &amp; Registration features.">
+      <option name="closed" value="true" />
+      <created>1708198901342</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708198901342</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,6 +289,7 @@
     <MESSAGE value="Completed Pre Login UI designing and partially finished registration." />
     <MESSAGE value="Added Email sending service." />
     <MESSAGE value="Added back end validations to registration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added back end validations to registration." />
+    <MESSAGE value="Completed the Login &amp; Registration features." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the Login &amp; Registration features." />
   </component>
 </project>
