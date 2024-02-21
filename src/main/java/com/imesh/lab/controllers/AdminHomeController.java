@@ -1,8 +1,6 @@
 package com.imesh.lab.controllers;
 
-import com.imesh.lab.services.RegistrationService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +10,7 @@ import java.io.IOException;
 public class AdminHomeController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         switch (req.getParameter("action-type")) {
             case "Logout":
                 logOutAdmin(req, res);

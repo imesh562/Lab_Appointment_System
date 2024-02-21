@@ -65,6 +65,11 @@
     <servlet-class>com.imesh.lab.controllers.AdminHomeController</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>NewAppointmentController</servlet-name>
+    <servlet-class>com.imesh.lab.controllers.NewAppointmentController</servlet-class>
+  </servlet>
+
   <!-- Controller Mapping-->
   <servlet-mapping>
     <servlet-name>RegistrationController</servlet-name>
@@ -84,6 +89,11 @@
   <servlet-mapping>
     <servlet-name>AdminHomeController</servlet-name>
     <url-pattern>/AdminLogout</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>NewAppointmentController</servlet-name>
+    <url-pattern>/GetLabTests</url-pattern>
   </servlet-mapping>
 </web-app>
 
