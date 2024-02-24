@@ -4,7 +4,7 @@
 
   <display-name>ABC Labs</display-name>
   <welcome-file-list>
-    <welcome-file>customer/customer_index.jsp</welcome-file>
+    <welcome-file>customer_index.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- Filters -->
@@ -26,22 +26,32 @@
   <!-- Filter Mappings-->
   <filter-mapping>
     <filter-name>SessionFilter</filter-name>
-    <url-pattern>/customer/*</url-pattern>
+    <url-pattern>/customer_index.jsp</url-pattern>
   </filter-mapping>
 
   <filter-mapping>
     <filter-name>SessionFilter</filter-name>
-    <url-pattern>/admin/*</url-pattern>
+    <url-pattern>/add_appointment.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/admin_index.jsp</url-pattern>
   </filter-mapping>
 
   <filter-mapping>
     <filter-name>AdminRedirectFilter</filter-name>
-    <url-pattern>/customer/*</url-pattern>
+    <url-pattern>/customer_index.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>AdminRedirectFilter</filter-name>
+    <url-pattern>/add_appointment.jsp</url-pattern>
   </filter-mapping>
 
   <filter-mapping>
     <filter-name>CustomerRedirectFilter</filter-name>
-    <url-pattern>/admin/*</url-pattern>
+    <url-pattern>/admin_index.jsp</url-pattern>
   </filter-mapping>
 
   <!-- Controllers-->

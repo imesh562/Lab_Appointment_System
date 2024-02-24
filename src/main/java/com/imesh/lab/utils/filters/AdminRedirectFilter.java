@@ -19,7 +19,7 @@ public class AdminRedirectFilter implements Filter {
         if (isUserLogged) {
             int userType = (int) req.getSession().getAttribute("user_type");
             if(userType == 1){
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("../admin/admin_index.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin_index.jsp");
                 requestDispatcher.forward(req, res);
             }
         }

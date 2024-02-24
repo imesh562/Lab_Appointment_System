@@ -18,7 +18,7 @@ public class CustomerRedirectFilter implements Filter {
         if (isUserLogged) {
             int userType = (int) req.getSession().getAttribute("user_type");
             if(userType == 2){
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("../customer/customer_index.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/customer_index.jsp");
                 requestDispatcher.forward(req, res);
             }
         }

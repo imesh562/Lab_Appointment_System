@@ -12,7 +12,7 @@ import java.io.IOException;
 public class CustomerHomeController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         switch (req.getParameter("action-type")) {
             case "Logout":
                 logOutCustomer(req, res);

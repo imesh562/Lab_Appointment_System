@@ -1,0 +1,226 @@
+/* common */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-col: rgb(0, 136, 255);
+}
+
+body{
+    padding-left: 90px;
+    padding-right: 20px;
+}
+
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100px;
+}
+/*  */
+
+/* Nav bar */
+.nav-bar-main{
+    width: 70px;
+    height: 100vh;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-right: 1px solid rgb(223, 223, 223);
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#a-logo{
+    margin-bottom: 30px;
+}
+
+#a-logo img{
+    width: 60px;
+    height: 60px;
+}
+
+.nav-link{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-link i{
+    font-size: 25px;
+    color: black;
+}
+/*  */
+
+/* home */
+.top-dropdown-btn-wrapper{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-dropdown-btn-wrapper .filter-select-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.top-dropdown-btn-wrapper .filter-select-wrapper .filter-icon-box{
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-right: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.top-dropdown-btn-wrapper .filter-select-wrapper .filter-icon-box i{
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.494);
+}
+
+.top-dropdown-btn-wrapper .filter-select-wrapper .select-filter{
+    width: 200px;
+    height: 40px;
+    margin-right: 10px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-left: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.top-dropdown-btn-wrapper .a-add-appointment{
+    height: 40px;
+    padding: 0 20px;
+    background-color: var(--primary-col);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.top-dropdown-btn-wrapper .a-add-appointment i{
+    margin-right: 5px;
+}
+
+.table-appointments {
+    margin-top: 50px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-appointments th,
+.table-appointments td {
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-appointments th {
+    background-color: rgba(0, 106, 255, 0.144);
+}
+
+.table-appointments td .btn-download, .table-appointments td .btn-cancel{
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.table-appointments td .btn-download {
+    background-color: rgb(0, 207, 0);
+}
+
+.table-appointments td .btn-cancel{
+    background-color: red;
+}
+
+.table-appointments td i, .table-appointments td i{
+    color: white;
+}
+
+/*  */
+
+/* add apointment */
+
+.add-appointment-main{
+    max-width: 700px;
+    margin: 100px auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.069);
+}
+
+.inp-box{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.dropdown-box{
+    width: 100%;
+    max-height: 500px;
+    height: 100%;
+    background-color: rgb(227, 227, 227);
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    z-index: 1;
+}
+
+.dropdown-box button{
+    padding: 10px 0;
+    border: none;
+    text-align: left;
+}
+
+.inp-box input, .inp-box select{
+    min-width: 200px;
+    height: 40px;
+    padding-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.119);
+    border-radius: 5px;
+    position: relative;
+    outline: none;
+}
+
+.inp-box .inp-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.submit-btn-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-submit{
+    padding: 13px 30px;
+    margin: 0 auto;
+    background-color: var(--primary-col);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}
