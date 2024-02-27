@@ -23,12 +23,14 @@ public class AppointmentDaoImpl implements AppointmentDao{
         PreparedStatement statement = connection.prepareStatement(query);
         ResultSet result = statement.executeQuery();
 
-        if (result.next()) {
+        while (result.next()) {
             tests.add(new TestModel(
                     result.getInt("test_id"),
                     result.getString("test_name"),
                     result.getInt("daily_slot_count"),
-                    result.getDouble("price")
+                    result.getDouble("price"),
+                    result.getInt("time_period"),
+                    result.getString("technician")
             ));
         }
 

@@ -103,7 +103,7 @@
 
   <servlet-mapping>
     <servlet-name>NewAppointmentController</servlet-name>
-    <url-pattern>/GetLabTests</url-pattern>
+    <url-pattern>/AddNewAppointment</url-pattern>
   </servlet-mapping>
 </web-app>
 

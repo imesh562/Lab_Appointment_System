@@ -16,7 +16,7 @@
     <a class="nav-link" id="nav-home" href="customer_index.jsp">
         <i class="fa fa-home"></i>
     </a>
-    <a class="nav-link" id="nav-add-appointment" href="add_appointment.jsp">
+    <a class="nav-link" id="nav-add-appointment" href="AddNewAppointment">
         <i class="fa fa-plus-circle"></i>
     </a>
     <a class="nav-link" href="CustomerLogout?action-type=Logout">
@@ -36,7 +36,7 @@
                 <option value="All">All</option>
             </select>
         </div>
-        <a class="a-add-appointment" href="add_appointment.jsp">
+        <a class="a-add-appointment" href="AddNewAppointment">
             <i class="fa fa-plus-circle"></i>
             <p>Add Appointment</p>
         </a>

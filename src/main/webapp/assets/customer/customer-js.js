@@ -140,28 +140,33 @@ populateTable();
 
 ///////////add appointment///////////
 
-//select lab test
+var parsedList = JSON.parse(testData);
+const labTests = []
+for (var i = 0; i < parsedList.length; i++) {
+    labTests.push(parsedList[i]);
+}
 
-const labTests = [
-    { id: 1, name: 'test-11' },
-    { id: 2, name: 'test-21' },
-    { id: 3, name: 'test-31' },
-]
 
 const dropdownInputField = document.getElementById("lab-test");
 const labTestDropdown = document.getElementById("lab-tests-dropdown");
-let selectedLabtest = null;
+const dateField = document.getElementById("datepicker-box");
+const technicianText = document.getElementById("technician")
+const priceText = document.getElementById("price")
+let selectedLabTest = null;
 
 labTests.forEach(labTest => {
     let button = document.createElement("button");
-    button.textContent = labTest.name;
+    button.textContent = labTest.testName;
 
-    //select a labt test
+    //select a lab test
     button.addEventListener("click", () => {
-        selectedLabtest = labTest.name;
-        dropdownInputField.value = selectedLabtest;
-        console.log(selectedLabtest)
+        selectedLabTest = labTest;
+        dropdownInputField.value = selectedLabTest.testName;
+        console.log(selectedLabTest)
         labTestDropdown.style.display = 'none';
+        technicianText.textContent = "Technician: "+selectedLabTest.technician;
+        priceText.textContent = "Price: "+selectedLabTest.price;
+        dateField.style.display = "block";
     });
 
     //append the buttons to the dropdown
