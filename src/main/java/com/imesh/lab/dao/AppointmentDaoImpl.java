@@ -3,10 +3,7 @@ package com.imesh.lab.dao;
 import com.imesh.lab.models.TestModel;
 import com.imesh.lab.utils.database.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +34,41 @@ public class AppointmentDaoImpl implements AppointmentDao{
         statement.close();
         connection.close();
         return tests;
+    }
+
+    @Override
+    public List<Timestamp> getScheduledDates(int test_id) throws SQLException, ClassNotFoundException {
+        List<Timestamp> dates = new ArrayList<>();
+        Connection connection = getDbConnection();
+        String query = "SELECT * FROM Appointments WHERE test_id = ? AND scheduled_date > CURDATE()";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, test_id);
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+            dates.add(result.getTimestamp("scheduled_date"));
+        }
+
+        statement.close();
+        connection.close();
+        return dates;
+    }
+
+    @Override
+    public int getTestLimit(int test_id) throws SQLException, ClassNotFoundException {
+        int limit = 0;
+        Connection connection = getDbConnection();
+        String query = "SELECT * FROM Tests WHERE test_id = ? LIMIT 1";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, test_id);
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+            limit = result.getInt("daily_slot_count");
+        }
+
+        statement.close();
+        connection.close();
+        return limit;
     }
 }

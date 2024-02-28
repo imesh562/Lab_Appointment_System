@@ -1,37 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-<% String testData = (String)request.getAttribute("labTests"); %>
-<script>
-    var testData = '<%= testData %>';
-</script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Appointment</title>
-    <link rel="stylesheet" href="assets/customer/customer-style.css">
+    <link rel="stylesheet" href="assets/add_appointment/add_appointment-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $( function() {
-            var disabledDates = ["2024-02-20", "2024-02-21", "2024-02-22"];
-            $( "#datepicker" ).datepicker({
-                minDate: 0, // Disallow past days
-                beforeShowDay: function(date){
-                    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                    return [ disabledDates.indexOf(string) == -1 ]
-                }
-            });
-        });
-    </script>
 </head>
 
 <body>
 <div class="nav-bar-main">
     <a id="a-logo" href="customer_index.jsp">
-        <img src="assets/customer/images/logo.webp" alt="">
+        <img src="assets/images/logo.webp" alt="">
     </a>
     <a class="nav-link" id="nav-home" href="customer_index.jsp">
         <i class="fa fa-home"></i>
@@ -50,6 +33,7 @@
                 <label for="lab-test">Lab Test:</label>
                 <input type="text" id="lab-test" name="lab-test" required>
                 <div class="dropdown-box" id="lab-tests-dropdown"></div>
+                <br>
                 <p id="technician"></p>
                 <p id="price"></p>
             </div>
@@ -90,8 +74,12 @@
         </form>
     </div>
 </div>
+<% String testData = (String)request.getAttribute("labTests"); %>
+<script>
+    var testData = '<%= testData %>';
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="assets/customer/customer-js.js"></script>
+<script src="assets/add_appointment/add_appointment-js.js"></script>
 <script>
     const message = '<%= request.getAttribute("message") %>';
     const title = '<%= request.getAttribute("title") %>';
@@ -103,5 +91,4 @@
     }
 </script>
 </body>
-
 </html>

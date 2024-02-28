@@ -36,12 +36,12 @@ public class LoginController extends HttpServlet {
     }
 
     void loginUser(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false);
+        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false, null);
         try {
             LoginModel loginData = new Gson().fromJson(getDataMapper().mapData(req), LoginModel.class);
             message = getLoginService().loginUser(loginData, req);
         } catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
-            message = new CommonMessageModel("Something went wrong.", false);
+            message = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
         } finally {
             if (!message.isSuccess()) {
