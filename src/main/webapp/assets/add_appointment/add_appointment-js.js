@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Swal.close();
                     var jsonData = JSON.parse(response);
                     if(jsonData.isSuccess){
-                        showDialogBox('Success', 'We have sent you an Email with details regarding your appointment.', 'success');
+                        showDialogBox('Success', 'We have sent you an Email with details regarding your appointment.', 'success', function(){window.history.back();},);
                     } else {
                         showDialogBox('Something went wrong', 'Please try again', 'error');
                     }
@@ -137,13 +137,17 @@ $( function() {
     });
 });
 
-function showDialogBox(title, message, icon) {
+function showDialogBox(title, message, icon, onClose) {
     Swal.fire({
         title: title,
         text: message,
         icon: icon,
-        confirmButtonText: 'Close'
-    })
+        confirmButtonText: 'Close',
+    }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.close) {
+            onClose();
+        }
+    });
 }
 
 function showLoader() {

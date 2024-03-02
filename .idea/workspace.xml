@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Refactored the code and add the functionality to get the available dates when making the appointment.">
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Completed the front end part of the add new appointment.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/add_appointment/add_appointment-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/add_appointment/add_appointment-js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +184,7 @@
       <workItem from="1708799253699" duration="22995000" />
       <workItem from="1709051068553" duration="3523000" />
       <workItem from="1709131833415" duration="13628000" />
-      <workItem from="1709381915863" duration="14732000" />
+      <workItem from="1709381915863" duration="15426000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -340,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709147264289</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Completed the front end part of the add new appointment.">
+      <option name="closed" value="true" />
+      <created>1709402068009</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709402068009</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +369,7 @@
     <MESSAGE value="Customer front end development is completed." />
     <MESSAGE value="Add appointment is in progress." />
     <MESSAGE value="Refactored the code and add the functionality to get the available dates when making the appointment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored the code and add the functionality to get the available dates when making the appointment." />
+    <MESSAGE value="Completed the front end part of the add new appointment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the front end part of the add new appointment." />
   </component>
 </project>
