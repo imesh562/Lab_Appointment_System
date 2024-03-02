@@ -9,24 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Add appointment is in progress.">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/add_appointment/add_appointment-js.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/add_appointment/add_appointment-style.css" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Refactored the code and add the functionality to get the available dates when making the appointment.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/NewAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/NewAppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AppointmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AppointmentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AppointmentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AppointmentDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/CommonMessageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/CommonMessageModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/RegistrationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer/customer-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer/customer-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer/images/logo.webp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/logo.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/add_appointment/add_appointment-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/add_appointment/add_appointment-js.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -199,7 +185,8 @@
       <workItem from="1708619664633" duration="26000" />
       <workItem from="1708799253699" duration="22995000" />
       <workItem from="1709051068553" duration="3523000" />
-      <workItem from="1709131833415" duration="13515000" />
+      <workItem from="1709131833415" duration="13628000" />
+      <workItem from="1709381915863" duration="14732000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -345,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709055239500</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Refactored the code and add the functionality to get the available dates when making the appointment.">
+      <option name="closed" value="true" />
+      <created>1709147264289</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709147264289</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,6 +362,7 @@
     <MESSAGE value="Tested the Newly added feature" />
     <MESSAGE value="Customer front end development is completed." />
     <MESSAGE value="Add appointment is in progress." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add appointment is in progress." />
+    <MESSAGE value="Refactored the code and add the functionality to get the available dates when making the appointment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored the code and add the functionality to get the available dates when making the appointment." />
   </component>
 </project>

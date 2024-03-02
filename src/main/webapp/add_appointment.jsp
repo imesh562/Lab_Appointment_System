@@ -30,43 +30,22 @@
     <div class="add-appointment-main">
         <form id="add-appointment">
             <div class="inp-box">
-                <label for="lab-test">Lab Test:</label>
-                <input type="text" id="lab-test" name="lab-test" required>
-                <div class="dropdown-box" id="lab-tests-dropdown"></div>
-                <br>
-                <p id="technician"></p>
-                <p id="price"></p>
-            </div>
-            <div class="inp-box" id="datepicker-box" style="display: none;">
-                <label for="datepicker">Select a date:</label>
-                <input type="text" id="datepicker">
-            </div>
-            <div class="inp-box">
-                <label for="doctor-name">Doctor's name:</label>
-                <input type="text" id="doctor-name" name="doctor-name" required>
-            </div>
-            <div class="inp-box">
-                <label for="name-in-card">Name in card:</label>
-                <input type="text" id="name-in-card" name="name-in-card" required>
-            </div>
-            <div class="inp-box">
-                <div class="inp-grid">
-                    <div>
-                        <label for="card-type">Card type:</label><br>
-                        <select name="card-type" id="card-type">
-                            <option value="visa">Visa</option>
-                            <option value="master">Master</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="cvc">CVC:</label><br>
-                        <input type="number" id="cvc" name="cvc" required>
-                    </div>
+                <label for="lab-test">*Lab Test :</label>
+                <input type="text" id="lab-test" autocomplete="off" oninput="filterOptions()" onfocus="clearDropdown()" onfocusout="fillDropdown()" onchange="handleOptionSelection()" list="options">
+                <datalist id="options"></datalist>
+                <div style="display: flex; justify-content: space-between;">
+                    <p style="font-size: small" id="technician"></p>
+                    <p style="font-size: small" id="price"></p>
                 </div>
             </div>
+            <div class="inp-box"  id="datepicker-box" style="display: none;">
+                <label for="datepicker">*Select a date :</label>
+                <input type="text" autocomplete="off" id="datepicker">
+                <p style="color: red; font-size: small">Note: Some dates on the calendar may be disabled due to full capacity.</p>
+            </div>
             <div class="inp-box">
-                <label for="card-number">Card number:</label>
-                <input type="number" id="card-number" name="card-number" required>
+                <label for="doctor-name">Doctor's name (Optional) :</label>
+                <input type="text" id="doctor-name" name="doctor-name">
             </div>
             <div class="submit-btn-wrapper">
                 <button class="btn-submit" id="submit-appointment">SUBMIT</button>
@@ -80,6 +59,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="assets/add_appointment/add_appointment-js.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <script>
     const message = '<%= request.getAttribute("message") %>';
     const title = '<%= request.getAttribute("title") %>';

@@ -30,10 +30,11 @@
                 <i class="fa fa-sliders" aria-hidden="true"></i>
             </div>
             <select class="select-filter" onchange="filterAppointments()" name="" id="filter-appointment">
+                <option value="All">All</option>
                 <option value="Upcoming">Upcoming</option>
                 <option value="Pending">Pending</option>
                 <option value="Completed">Completed</option>
-                <option value="All">All</option>
+                <option value="Canceled">Canceled</option>
             </select>
         </div>
         <a class="a-add-appointment" href="AddNewAppointment">

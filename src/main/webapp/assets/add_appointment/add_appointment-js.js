@@ -1,54 +1,149 @@
-const labTests = []
+var testList = JSON.parse(testData);
 var disabledDates = [];
-let selectedLabTest = null;
-var parsedList = JSON.parse(testData);
-
-for (var i = 0; i < parsedList.length; i++) {
-    labTests.push(parsedList[i]);
-}
+var selectedTestId;
+var selectedTestName;
+var selectedDate;
 
 const dropdownInputField = document.getElementById("lab-test");
-const labTestDropdown = document.getElementById("lab-tests-dropdown");
 const dateField = document.getElementById("datepicker-box");
 const technicianText = document.getElementById("technician")
 const priceText = document.getElementById("price")
 
+function addOption(value) {
+    var datalist = document.getElementById('options');
+    var option = document.createElement('option');
+    option.value = value.testName;
+    option.id = value.testId;
+    datalist.appendChild(option);
+}
 
-labTests.forEach(labTest => {
-    let button = document.createElement("button");
-    button.textContent = labTest.testName;
+for (var i = 0; i < testList.length; i++) {
+    addOption(testList[i]);
+}
 
-    button.addEventListener("click", () => {
-        selectedLabTest = labTest;
-        dropdownInputField.value = selectedLabTest.testName;
-        console.log(selectedLabTest)
-        labTestDropdown.style.display = 'none';
-        technicianText.textContent = "Technician: "+selectedLabTest.technician;
-        priceText.textContent = "Price (LKR): "+selectedLabTest.price;
-        dateField.style.display = "block";
-        onSelectTest(selectedLabTest);
-    });
+function clearDropdown() {
+    dropdownInputField.value = "";
+}
 
-    labTestDropdown.appendChild(button);
-});
+function fillDropdown() {
+    if(selectedTestId != null){
+        dropdownInputField.value = selectedTestName;
+    }
+}
+
+function filterOptions() {
+    var filter, datalist, options;
+    filter = dropdownInputField.value.toUpperCase();
+    datalist = document.getElementById('options');
+    options = datalist.getElementsByTagName('option');
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].value.toUpperCase().indexOf(filter) > -1) {
+            options[i].style.display = '';
+        } else {
+            options[i].style.display = 'none';
+        }
+    }
+}
+
+function handleOptionSelection() {
+    selectedTestName = dropdownInputField.value;
+    dropdownInputField.blur();
+    for (var i = 0; i < testList.length; i++) {
+        if(testList[i].testName === dropdownInputField.value){
+            technicianText.textContent = "Technician: "+testList[i].technician;
+            priceText.textContent = "Price (LKR): "+testList[i].price;
+            dateField.style.display = "block";
+            selectedTestId = testList[i].testId;
+            fillDropdown();
+            onSelectTest(selectedTestId);
+            break;
+        }
+    }
+}
+
 function onSelectTest(selectedLabTest) {
     showLoader();
     $.ajax({
         type: 'POST',
         url: 'AddNewAppointment',
-        data: 'testId=' + selectedLabTest.testId + '&action-type=GetDisabledDates',
+        data: 'testId=' + selectedLabTest + '&action-type=GetDisabledDates',
         error: function(response) {
             Swal.close();
+            showDialogBox('Something went wrong', 'Please try again', 'error');
         },
         success: function(response) {
             Swal.close();
             var jsonData = JSON.parse(response);
             var newData = jsonData.data;
-            disabledDates = [];
-            disabledDates.push(...newData);
-            console.log(disabledDates);
+            if(jsonData.isSuccess){
+                selectedDate = null;
+                document.getElementById("datepicker").value = "";
+                disabledDates = [];
+                disabledDates.push(...newData);
+            } else {
+                showDialogBox('Something went wrong', 'Please try again', 'error');
+            }
         }
     });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('add-appointment');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const doctorName = formData.get('doctor-name');
+
+        if(selectedTestId == null || selectedTestId === ""){
+            showDialogBox("Operation Failed.", "Please select a test before proceeding.", "error");
+        } else if(selectedDate == null || selectedDate === ""){
+            showDialogBox("Operation Failed.", "Please select a date before proceeding.", "error");
+        } else {
+            showLoader();
+            $.ajax({
+                type: 'POST',
+                url: 'AddNewAppointment',
+                data: 'action-type=AddNewAppointment&selectedDate='+selectedDate+'&doctorName='+doctorName+'&selectedTestId='+selectedTestId,
+                error: function(response) {
+                    Swal.close();
+                    showDialogBox('Something went wrong', 'Please try again', 'error');
+                },
+                success: function(response) {
+                    Swal.close();
+                    var jsonData = JSON.parse(response);
+                    if(jsonData.isSuccess){
+                        showDialogBox('Success', 'We have sent you an Email with details regarding your appointment.', 'success');
+                    } else {
+                        showDialogBox('Something went wrong', 'Please try again', 'error');
+                    }
+                }
+            });
+        }
+    });
+});
+
+$( function() {
+    $( "#datepicker" ).datepicker({
+        minDate: 0,
+        beforeShowDay: function(date){
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [ disabledDates.indexOf(string) === -1 ]
+        },
+        onSelect: function(dateText, inst) {
+            selectedDate = dateText;
+        }
+    });
+});
+
+function showDialogBox(title, message, icon) {
+    Swal.fire({
+        title: title,
+        text: message,
+        icon: icon,
+        confirmButtonText: 'Close'
+    })
 }
 
 function showLoader() {
@@ -65,43 +160,3 @@ function showLoader() {
         Swal.close();
     }, 10000);
 }
-
-function handleFocus() {
-    labTestDropdown.style.display = 'flex';
-}
-
-dropdownInputField.addEventListener("focus", handleFocus);
-
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('add-appointment');
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        // Get form data
-        const formData = new FormData(form);
-        const labTest = formData.get('lab-test');
-        const date = formData.get('date');
-        const nameInCard = formData.get('name-in-card');
-        const cardType = formData.get('card-type');
-        const cvc = formData.get('cvc');
-        const cardNumber = formData.get('card-number');
-
-        console.log(labTest);
-        console.log(date);
-        console.log(nameInCard);
-        console.log(cardType);
-        console.log(cvc);
-        console.log(cardNumber);
-    });
-});
-
-$( function() {
-    $( "#datepicker" ).datepicker({
-        minDate: 0,
-        beforeShowDay: function(date){
-            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-            return [ disabledDates.indexOf(string) === -1 ]
-        }
-    });
-});
