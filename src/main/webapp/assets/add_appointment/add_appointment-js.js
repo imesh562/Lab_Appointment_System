@@ -145,7 +145,9 @@ function showDialogBox(title, message, icon, onClose) {
         confirmButtonText: 'Close',
     }).then((result) => {
         if (result.isConfirmed || result.dismiss === Swal.DismissReason.close) {
-            onClose();
+            if(onClose != null){
+                onClose();
+            }
         }
     });
 }
@@ -162,5 +164,5 @@ function showLoader() {
 
     setTimeout(() => {
         Swal.close();
-    }, 10000);
+    }, 30000);
 }
