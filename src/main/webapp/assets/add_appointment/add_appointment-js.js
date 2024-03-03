@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if(jsonData.isSuccess){
                         showDialogBox('Success', 'We have sent you an Email with details regarding your appointment.', 'success', function(){window.history.back();},);
                     } else {
-                        showDialogBox('Something went wrong', 'Please try again', 'error');
+                        showDialogBox('Failure', jsonData.message, 'error');
                     }
                 }
             });

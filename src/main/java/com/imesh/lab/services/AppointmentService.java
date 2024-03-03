@@ -9,6 +9,8 @@ import com.imesh.lab.models.TestModel;
 import com.imesh.lab.utils.data_mapper.DataMapper;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -67,10 +69,13 @@ public class AppointmentService {
         }
 
         AddAppointmentModel addAppointmentModel = new Gson().fromJson(dataMapper.mapData(req), AddAppointmentModel.class);
-        List<Timestamp> dates = getAppointmentDao().getScheduledDates(addAppointmentModel.getSelectedTestId());
-        for (Timestamp timestamp : dates) {
-            String date = timestamp.toLocalDateTime().toLocalDate().toString();
-            if(date.equals(addAppointmentModel.getSelectedDate())){
+        List<String> dates = (List<String>) getDisabledDates(addAppointmentModel.getSelectedTestId()).getData();
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate tempDate = LocalDate.parse(addAppointmentModel.getSelectedDate().replace('/', '-'), inputFormatter);
+        String formattedDate = tempDate.format(outputFormatter);
+        for (String date : dates) {
+            if(date.equals(formattedDate)){
                 return new CommonMessageModel("Please select a valid date", false, null);
             }
         }
@@ -82,8 +87,8 @@ public class AppointmentService {
 
         int id = (int) req.getSession().getAttribute("id");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = (Date) dateFormat.parse(addAppointmentModel.getSelectedDate());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = dateFormat.parse(addAppointmentModel.getSelectedDate());
         Timestamp timestamp = new Timestamp(date.getTime());
         if(!getAppointmentDao().addNewAppointment(addAppointmentModel, timestamp, id, paymentId)){
             return new CommonMessageModel("Failed to create the appointment", false, null);
