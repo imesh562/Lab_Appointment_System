@@ -5,9 +5,11 @@ import com.imesh.lab.models.TestModel;
 import com.imesh.lab.utils.database.ConnectionFactory;
 
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AppointmentDaoImpl implements AppointmentDao{
@@ -55,6 +57,26 @@ public class AppointmentDaoImpl implements AppointmentDao{
         statement.close();
         connection.close();
         return dates;
+    }
+
+    @Override
+    public int getTestSpecificDayCount(int test_id, Timestamp date) throws SQLException, ClassNotFoundException, ParseException {
+        int count = -1;
+        Connection connection = getDbConnection();
+        String query = "SELECT COUNT(*) AS count FROM Appointments WHERE test_id = ? AND scheduled_date = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, test_id);
+        statement.setTimestamp(2, date);
+        ResultSet result = statement.executeQuery();
+
+        if (result.next()) {
+            count = result.getInt("count");
+            System.out.println(count);
+        }
+
+        statement.close();
+        connection.close();
+        return count;
     }
 
     @Override
@@ -121,10 +143,10 @@ public class AppointmentDaoImpl implements AppointmentDao{
     }
 
     @Override
-    public boolean addNewAppointment(AddAppointmentModel addAppointmentModel, Timestamp date, int customer_id, int payment_id) throws SQLException, ClassNotFoundException, ParseException {
+    public int addNewAppointment(AddAppointmentModel addAppointmentModel, Timestamp date, int customer_id, int payment_id) throws SQLException, ClassNotFoundException, ParseException {
         Connection connection = getDbConnection();
         String query = "INSERT INTO Appointments (test_id, scheduled_date, payment_id, status, customer_id, doctor_name) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(query);
+        PreparedStatement statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
         statement.setInt(1, addAppointmentModel.getSelectedTestId());
         statement.setTimestamp(2, date);
@@ -132,11 +154,16 @@ public class AppointmentDaoImpl implements AppointmentDao{
         statement.setInt(4, 1);
         statement.setInt(5, customer_id);
         statement.setString(6, addAppointmentModel.getDoctorName());
-
         int result = statement.executeUpdate();
+
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+        int appointmentId = -1;
+        if (generatedKeys.next()) {
+            appointmentId = generatedKeys.getInt(1);
+        }
         statement.close();
         connection.close();
 
-        return result > 0;
+        return appointmentId;
     }
 }

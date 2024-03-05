@@ -5,6 +5,7 @@ import com.imesh.lab.models.CommonMessageModel;
 import com.imesh.lab.models.TestModel;
 import com.imesh.lab.services.AppointmentService;
 import com.imesh.lab.utils.data_mapper.DataMapper;
+import com.imesh.lab.utils.mail.EmailSender;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,9 @@ import java.util.List;
 
 public class NewAppointmentController extends HttpServlet {
 
+    private static EmailSender getEmailSender() {
+        return EmailSender.getEmailSender();
+    }
     private static AppointmentService getAppointmentService() {
         return AppointmentService.getService();
     }
@@ -46,7 +50,7 @@ public class NewAppointmentController extends HttpServlet {
     private void addNewAppointment(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         try {
-            response = getAppointmentService().addNewAppointment(req, getDataMapper());
+            response = getAppointmentService().addNewAppointment(req, getDataMapper(), getEmailSender());
         } catch (ClassNotFoundException | SQLException | ParseException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
