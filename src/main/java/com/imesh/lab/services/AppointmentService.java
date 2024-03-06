@@ -66,49 +66,38 @@ public class AppointmentService {
         }
 
         AddAppointmentModel addAppointmentModel = new Gson().fromJson(dataMapper.mapData(req), AddAppointmentModel.class);
-        List<String> dates = (List<String>) getDisabledDates(addAppointmentModel.getSelectedTestId()).getData();
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate tempDate = LocalDate.parse(addAppointmentModel.getSelectedDate().replace('/', '-'), inputFormatter);
-        String formattedDate = tempDate.format(outputFormatter);
-        for (String date : dates) {
-            if(date.equals(formattedDate)){
-                return new CommonMessageModel("Please select a valid date", false, null);
-            }
+        CommonMessageModel validDate = validateSelectedDate(addAppointmentModel);
+        if(validDate != null){
+            return validDate;
         }
 
+        // Adding data to the Payments table.
         int paymentId = getAppointmentDao().addNewPayment(test.getPrice());
         if(paymentId == -1){
             return new CommonMessageModel("Failed to create the appointment", false, null);
         }
 
-        int id = (int) req.getSession().getAttribute("id");
+        // Adding data to the Appointments table.
+        Date scheduleTime = calculateTheScheduleTime(addAppointmentModel, test);
+        Timestamp scheduleTimestamp = new Timestamp(scheduleTime.getTime());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = dateFormat.parse(addAppointmentModel.getSelectedDate());
-        Timestamp timestamp = new Timestamp(date.getTime());
-        int appointmentId = getAppointmentDao().addNewAppointment(addAppointmentModel, timestamp, id, paymentId);
+        Date selectedDate = dateFormat.parse(addAppointmentModel.getSelectedDate());
+        Timestamp selectedDateStamp = new Timestamp(selectedDate.getTime());
+
+        int id = (int) req.getSession().getAttribute("id");
+        int appointmentId = getAppointmentDao().addNewAppointment(addAppointmentModel, selectedDateStamp, id, paymentId, scheduleTimestamp);
         if(appointmentId == -1){
             return new CommonMessageModel("Failed to create the appointment", false, null);
         }
 
-        Date selectedDate = dateFormat.parse(addAppointmentModel.getSelectedDate());
-        Timestamp selectedTimestamp = new Timestamp(date.getTime());
-        int count = getAppointmentDao().getTestSpecificDayCount(addAppointmentModel.getSelectedTestId(), selectedTimestamp);
-        int minutes = test.getTimePeriod() * (count - 1);
-        if(minutes >= 300){
-            minutes = minutes + 60;
-        }
+        // Sending the appointment confirmation email.
+        sendAppointmentEmail(req, emailSender, scheduleTimestamp, appointmentId, test);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.add(Calendar.MINUTE, minutes);
-        Date newDate = calendar.getTime();
+        return new CommonMessageModel(null, true, null);
+    }
 
+    private static void sendAppointmentEmail(HttpServletRequest req, EmailSender emailSender, Date newDate, int appointmentId, TestModel test) {
         String email = (String) req.getSession().getAttribute("email");
         String firstName = (String) req.getSession().getAttribute("first_name");
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -120,9 +109,9 @@ public class AppointmentService {
                         "\n" +
                         "We are pleased to confirm your appointment for a lab test with us. Here are the details of your appointment:\n" +
                         "\n" +
-                        "Appointment ID: "+appointmentId+"\n" +
-                        "Test Name: "+test.getTestName()+"\n" +
-                        "Technician Name: "+test.getTechnician()+"\n" +
+                        "Appointment ID: "+ appointmentId +"\n" +
+                        "Test Name: "+ test.getTestName()+"\n" +
+                        "Technician Name: "+ test.getTechnician()+"\n" +
                         "Date: "+dateString+"\n" +
                         "Time: "+timeString+"\n" +
                         "We look forward to seeing you at our facility on the scheduled date and time. Please feel free to contact us if you have any questions.\n" +
@@ -131,6 +120,39 @@ public class AppointmentService {
                         "\n" +
                         "Best regards,\n" +
                         "ABC Laboratories");
-        return new CommonMessageModel(null, true, null);
+    }
+
+    private Date calculateTheScheduleTime(AddAppointmentModel addAppointmentModel, TestModel test) throws ParseException, SQLException, ClassNotFoundException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = dateFormat.parse(addAppointmentModel.getSelectedDate());
+        Timestamp selectedTimestamp = new Timestamp(date.getTime());
+        int count = getAppointmentDao().getTestSpecificDayCount(addAppointmentModel.getSelectedTestId(), selectedTimestamp);
+        int minutes = test.getTimePeriod() * count;
+        if(minutes >= 300){
+            minutes = minutes + 60;
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.MINUTE, minutes);
+        return calendar.getTime();
+    }
+
+    private CommonMessageModel validateSelectedDate(AddAppointmentModel addAppointmentModel) throws ClassNotFoundException, SQLException {
+        List<String> dates = (List<String>) getDisabledDates(addAppointmentModel.getSelectedTestId()).getData();
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate tempDate = LocalDate.parse(addAppointmentModel.getSelectedDate().replace('/', '-'), inputFormatter);
+        String formattedDate = tempDate.format(outputFormatter);
+        for (String date : dates) {
+            if(date.equals(formattedDate)){
+                return new CommonMessageModel("Please select a valid date", false, null);
+            }
+        }
+        return null;
     }
 }
