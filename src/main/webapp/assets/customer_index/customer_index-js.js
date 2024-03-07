@@ -1,7 +1,6 @@
 ////// navigation bar//////
 const Navigation = {
 
-    //func to handle the routes and change the styles of the buttons for the relevent route
     highlightButton() {
         const currentPage = window.location.pathname;
         const homeButton = document.getElementById('nav-home');
@@ -17,31 +16,45 @@ const Navigation = {
     }
 };
 
-//event listner to call the highlightButton func
 document.addEventListener('DOMContentLoaded', function () {
     Navigation.highlightButton();
 });
 ///// end of navigation bar///////
 
 /////////home//////////
-//////appointments table//////
-//appointments object
 
-//after the backend connected, remove below all the dummy data (after the backend implemented below object should be let appointments = [];)
-let appointments = [
-    { id: 1, testName: 'Test-1', createdDate: '2020-10-10', scheduledDate: '2020-11-11', price: 5000, status: 'pending', result: 'Results' },
-    { id: 2, testName: 'Test-2', createdDate: '2020-10-10', scheduledDate: '2020-11-11', price: 5000, status: 'pending', result: 'Results' },
-    { id: 3, testName: 'Test-1', createdDate: '2020-10-10', scheduledDate: '2020-11-11', price: 5000, status: 'pending', result: 'Results' },
-    { id: 4, testName: 'Test-1', createdDate: '2020-10-10', scheduledDate: '2020-11-11', price: 5000, status: 'pending', result: 'Results' },
-    { id: 5, testName: 'Test-1', createdDate: '2020-10-10', scheduledDate: '2020-11-11', price: 5000, status: 'pending', result: 'Results' },
-];
+let appointments = [];
+getTableData();
+
+function getTableData() {
+    showLoader();
+    $.ajax({
+        type: 'POST',
+        url: 'CustomerHomeData',
+        data: 'action-type=GetCustomerTableData',
+        error: function(response) {
+            Swal.close();
+            showDialogBox('Something went wrong', 'Please try again', 'error');
+        },
+        success: function(response) {
+            Swal.close();
+            var jsonData = JSON.parse(response);
+            var newData = jsonData.data;
+            if(jsonData.isSuccess){
+                appointments = [];
+                appointments.push(...newData);
+                populateTable();
+            } else {
+                showDialogBox('Something went wrong', 'Please try again', 'error');
+            }
+        }
+    });
+}
 
 //filter in home
 function filterAppointments() {
     var selectedValue = document.getElementById("filter-appointment").value;
-    //get the appointments related to the selected value and assign into the above appointments object
-    console.log(selectedValue);
-};
+}
 
 //create buttons to the table
 function createTableButtons(iconClass, buttonClass) {
@@ -66,63 +79,67 @@ function populateTable() {
 
             // Create table cells
             const testNameCell = document.createElement('td');
-            const createdDateCell = document.createElement('td');
-            const scheduledDateCell = document.createElement('td');
+            const AppointmentNoCell = document.createElement('td');
+            const scheduledTimeCell = document.createElement('td');
+            const doctorCell = document.createElement('td');
             const priceCell = document.createElement('td');
             const statusCell = document.createElement('td');
-            const resultCell = document.createElement('td');
 
             // Set the content of the cells
             testNameCell.textContent = appointment.testName;
-            createdDateCell.textContent = appointment.createdDate;
-            scheduledDateCell.textContent = appointment.scheduledDate;
-            priceCell.textContent = appointment.price;
-            statusCell.textContent = appointment.status;
-            resultCell.textContent = appointment.result;
+            AppointmentNoCell.textContent = appointment.appointmentId;
+            scheduledTimeCell.textContent = appointment.scheduleTime;
+            doctorCell.textContent = appointment.doctorName;
+            priceCell.textContent = appointment.amount;
+            statusCell.textContent = appointment.statusType;
 
             // Create table cells for buttons
             const downloadCell = document.createElement('td');
             const cancelCell = document.createElement('td');
+            let btnDownload;
+            let btnCancel;
 
             // Create buttons
-            const btnDownload = createTableButtons('fa-download', 'btn-download');
-            const btnCancel = createTableButtons('fa-ban', 'btn-cancel');
-
-            //event lister to download button. reffer appointment.id to do things related to selected record
-            btnDownload.addEventListener('click', () => {
-                console.log(appointment.id);
-            });
-
-            // Add event listener to the cancel button. reffer appointment.id to do things related to selected record
-            btnCancel.addEventListener('click', () => {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: `You are about to cancel the appointment ${appointment.testName}.`,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // implement your shit when a user confirmation
-                        console.log(`Appointment ${appointment.testName} has been cancelled.`);
-                    }
+            if(appointment.status === 3){
+                btnDownload = createTableButtons('fa-download', 'btn-download');
+                btnDownload.addEventListener('click', () => {
                 });
-            });
+            }
+            if(appointment.status === 1){
+                btnCancel  = createTableButtons('fa-ban', 'btn-cancel');
+                btnCancel.addEventListener('click', () => {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: `You are about to cancel the appointment ${appointment.testName}.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                        }
+                    });
+                });
+            }
 
             // Append buttons to cells
-            downloadCell.appendChild(btnDownload);
-            cancelCell.appendChild(btnCancel);
+            if(appointment.status === 3){
+                cdownloadCell.appendChild(btnDownload);
+            }
+            if(appointment.status === 1){
+                cancelCell.appendChild(btnCancel);
+            }
 
             // Append cells to the row
             row.appendChild(testNameCell);
-            row.appendChild(createdDateCell);
-            row.appendChild(scheduledDateCell);
+            row.appendChild(AppointmentNoCell);
+            row.appendChild(scheduledTimeCell);
+            row.appendChild(doctorCell);
             row.appendChild(priceCell);
             row.appendChild(statusCell);
-            row.appendChild(resultCell);
             row.appendChild(downloadCell);
             row.appendChild(cancelCell);
 
@@ -132,5 +149,32 @@ function populateTable() {
     }
 }
 
-//call the above function
-populateTable();
+function showDialogBox(title, message, icon, onClose) {
+    Swal.fire({
+        title: title,
+        text: message,
+        icon: icon,
+        confirmButtonText: 'Close',
+    }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.close) {
+            if(onClose != null){
+                onClose();
+            }
+        }
+    });
+}
+
+function showLoader() {
+    Swal.fire({
+        title: 'Loading...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        didOpen: () => {
+            Swal.showLoading()
+        }
+    })
+
+    setTimeout(() => {
+        Swal.close();
+    }, 30000);
+}

@@ -6,7 +6,8 @@
     <title>Home</title>
     <link rel="stylesheet" href="assets/customer_index/customer_index-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <div class="nav-bar-main">
@@ -47,11 +48,11 @@
             <thead>
             <tr>
                 <th>Test Name</th>
-                <th>Created Date</th>
+                <th>Appointment No</th>
                 <th>Scheduled Date</th>
-                <th>Price</th>
+                <th>Doctor</th>
+                <th>Price (LKR)</th>
                 <th>Status</th>
-                <th>Result</th>
                 <th>Download</th>
                 <th>Cancel</th>
             </tr>
@@ -60,6 +61,18 @@
         </table>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="assets/customer_index/customer_index-js.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const message = '<%= request.getAttribute("message") %>';
+    const title = '<%= request.getAttribute("title") %>';
+    const icon = '<%= request.getAttribute("icon") %>';
+    if (message !== "null") {
+        document.addEventListener('DOMContentLoaded', () => {
+            showDialogBox(title, message, icon);
+        })
+    }
+</script>
 </body>
 </html>

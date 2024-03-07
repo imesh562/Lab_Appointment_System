@@ -105,5 +105,10 @@
     <servlet-name>NewAppointmentController</servlet-name>
     <url-pattern>/AddNewAppointment</url-pattern>
   </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>CustomerHomeController</servlet-name>
+    <url-pattern>/CustomerHomeData</url-pattern>
+  </servlet-mapping>
 </web-app>
 

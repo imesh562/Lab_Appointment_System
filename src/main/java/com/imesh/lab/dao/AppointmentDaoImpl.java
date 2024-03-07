@@ -42,7 +42,7 @@ public class AppointmentDaoImpl implements AppointmentDao{
     public List<Timestamp> getScheduledDates(int test_id) throws SQLException, ClassNotFoundException {
         List<Timestamp> dates = new ArrayList<>();
         Connection connection = getDbConnection();
-        String query = "SELECT * FROM Appointments WHERE test_id = ? AND scheduled_date > CURDATE()";
+        String query = "SELECT * FROM Appointments WHERE test_id = ?  AND status = 1 AND scheduled_date > CURDATE()";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, test_id);
         ResultSet result = statement.executeQuery();
@@ -60,7 +60,7 @@ public class AppointmentDaoImpl implements AppointmentDao{
     public int getTestSpecificDayCount(int test_id, Timestamp date) throws SQLException, ClassNotFoundException, ParseException {
         int count = 0;
         Connection connection = getDbConnection();
-        String query = "SELECT COUNT(*) AS count FROM Appointments WHERE test_id = ? AND scheduled_date = ?";
+        String query = "SELECT COUNT(*) AS count FROM Appointments WHERE test_id = ? AND scheduled_date = ? AND status = 1";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, test_id);
         statement.setTimestamp(2, date);
