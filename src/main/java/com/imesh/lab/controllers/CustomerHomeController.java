@@ -35,14 +35,33 @@ public class CustomerHomeController extends HttpServlet {
             case "GetCustomerTableData":
                 getCustomerTableData(req, res);
                 break;
+            case "CancelAppointment":
+                cancelAppointment(req, res);
+                break;
+        }
+    }
+
+    private void cancelAppointment(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
+        try {
+            int user_id = (int) req.getSession().getAttribute("id");
+            int appointmentId = Integer.parseInt((req.getParameter("appointmentId")));
+            response = getCustomerHomeService().cancelAppointment(user_id, appointmentId);
+        } catch (ClassNotFoundException | SQLException e) {
+            response = new CommonMessageModel("Something went wrong.", false, null);
+            e.printStackTrace();
+        } finally {
+            res.setContentType("text/plain");
+            res.getWriter().print(new Gson().toJson(response));
         }
     }
 
     private void getCustomerTableData(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         try {
-            int user_id = (int) req.getSession().getAttribute("id");
-            response = getCustomerHomeService().getCustomerAppointments(user_id);
+            int userId = (int) req.getSession().getAttribute("id");
+            String filter = (String) req.getParameter("filter");
+            response = getCustomerHomeService().getCustomerAppointments(userId, filter);
         } catch (ClassNotFoundException | SQLException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();

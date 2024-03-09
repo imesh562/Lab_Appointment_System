@@ -24,14 +24,14 @@ document.addEventListener('DOMContentLoaded', function () {
 /////////home//////////
 
 let appointments = [];
-getTableData();
+getTableData("&filter=All");
 
-function getTableData() {
+function getTableData(type) {
     showLoader();
     $.ajax({
         type: 'POST',
         url: 'CustomerHomeData',
-        data: 'action-type=GetCustomerTableData',
+        data: 'action-type=GetCustomerTableData'+type,
         error: function(response) {
             Swal.close();
             showDialogBox('Something went wrong', 'Please try again', 'error');
@@ -42,8 +42,32 @@ function getTableData() {
             var newData = jsonData.data;
             if(jsonData.isSuccess){
                 appointments = [];
+                const appointmentList = document.getElementById('appointments-list');
+                appointmentList.innerHTML = '';
                 appointments.push(...newData);
                 populateTable();
+            } else {
+                showDialogBox('Something went wrong', 'Please try again', 'error');
+            }
+        }
+    });
+}
+
+function cancelAppointment(appointmentId) {
+    showLoader();
+    $.ajax({
+        type: 'POST',
+        url: 'CustomerHomeData',
+        data: 'action-type=CancelAppointment&appointmentId='+appointmentId,
+        error: function(response) {
+            Swal.close();
+            showDialogBox('Something went wrong', 'Please try again', 'error');
+        },
+        success: function(response) {
+            Swal.close();
+            var jsonData = JSON.parse(response);
+            if(jsonData.isSuccess){
+                filterAppointments();
             } else {
                 showDialogBox('Something went wrong', 'Please try again', 'error');
             }
@@ -54,6 +78,7 @@ function getTableData() {
 //filter in home
 function filterAppointments() {
     var selectedValue = document.getElementById("filter-appointment").value;
+    getTableData("&filter="+selectedValue);
 }
 
 //create buttons to the table
@@ -119,7 +144,7 @@ function populateTable() {
                         cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
-
+                            cancelAppointment(appointment.appointmentId)
                         }
                     });
                 });

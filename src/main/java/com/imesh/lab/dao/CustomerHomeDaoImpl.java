@@ -1,7 +1,6 @@
 package com.imesh.lab.dao;
 
 import com.imesh.lab.models.AppointmentModel;
-import com.imesh.lab.models.TestModel;
 import com.imesh.lab.utils.database.ConnectionFactory;
 
 import java.sql.*;
@@ -15,12 +14,20 @@ public class CustomerHomeDaoImpl implements CustomerHomeDao{
         return new ConnectionFactory().getDatabase().getConnection();
     }
     @Override
-    public List<AppointmentModel> getCustomerAppointments(int user_id) throws SQLException, ClassNotFoundException {
+    public List<AppointmentModel> getCustomerAppointments(int userId, int filterCode) throws SQLException, ClassNotFoundException {
         List<AppointmentModel> appointments = new ArrayList<>();
         Connection connection = getDbConnection();
-        String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id WHERE Appointments.customer_id = ?;";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, user_id);
+        PreparedStatement statement = null;
+        if(filterCode == 0){
+            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id WHERE Appointments.customer_id = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+        } else {
+            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id WHERE Appointments.customer_id = ? AND Appointments.status = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            statement.setInt(2, filterCode);
+        }
         ResultSet result = statement.executeQuery();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy h:mm a");
 
@@ -37,7 +44,7 @@ public class CustomerHomeDaoImpl implements CustomerHomeDao{
                     statusType = "Completed";
                     break;
                 case 4:
-                    statusType = "Cancel";
+                    statusType = "Canceled";
                     break;
                 default:
                     statusType = "";
@@ -64,5 +71,21 @@ public class CustomerHomeDaoImpl implements CustomerHomeDao{
         statement.close();
         connection.close();
         return appointments;
+    }
+
+    @Override
+    public boolean cancelAppointment(int userId, int filterCode) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String query = "UPDATE Appointments SET status = 4 WHERE customer_id = ? AND appointment_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        statement.setInt(1, userId);
+        statement.setInt(2, filterCode);
+        int rowsAffected = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+
+        return rowsAffected > 0;
     }
 }
