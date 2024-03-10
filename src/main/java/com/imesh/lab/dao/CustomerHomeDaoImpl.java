@@ -61,7 +61,6 @@ public class CustomerHomeDaoImpl implements CustomerHomeDao{
                             result.getString("doctor_name"),
                             result.getInt("payment_id"),
                             dateFormat.format(result.getTimestamp("schedule_time")),
-                            result.getString("document"),
                             result.getString("test_name"),
                             result.getDouble("amount")
                     )

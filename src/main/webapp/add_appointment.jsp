@@ -22,7 +22,7 @@
     <a class="nav-link" id="nav-add-appointment" href="AddNewAppointment">
         <i class="fa fa-plus-circle"></i>
     </a>
-    <a class="nav-link" href="CustomerLogout?action-type=Logout">
+    <a class="nav-link" href="CustomerLogout?actionType=Logout">
         <i class="fa fa-sign-out"></i>
     </a>
 </div>

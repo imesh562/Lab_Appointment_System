@@ -10,7 +10,6 @@ public class AppointmentModel {
     final String doctorName;
     final int paymentId;
     final String scheduleTime;
-    final String document;
     final String testName;
     final double amount;
 
@@ -24,10 +23,6 @@ public class AppointmentModel {
 
     public int getTestId() {
         return testId;
-    }
-
-    public String getDocument() {
-        return document;
     }
 
     public String getCreatedDate() {
@@ -62,7 +57,7 @@ public class AppointmentModel {
         return amount;
     }
 
-    public AppointmentModel(int appointmentId, int testId, String createdDate, int status, String statusType, int customerId, String doctorName, int paymentId, String scheduleTime, String document, String testName, double amount) {
+    public AppointmentModel(int appointmentId, int testId, String createdDate, int status, String statusType, int customerId, String doctorName, int paymentId, String scheduleTime, String testName, double amount) {
         this.appointmentId = appointmentId;
         this.testId = testId;
         this.createdDate = createdDate;
@@ -72,7 +67,6 @@ public class AppointmentModel {
         this.doctorName = doctorName;
         this.paymentId = paymentId;
         this.scheduleTime = scheduleTime;
-        this.document = document;
         this.testName = testName;
         this.amount = amount;
     }

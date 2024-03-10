@@ -75,6 +75,14 @@ function cancelAppointment(appointmentId) {
     });
 }
 
+function downloadDocument(appointmentId) {
+    var fileUrl = "CustomerLogout?actionType=DownloadDocument&appointmentId="+appointmentId;
+    var iframe = document.createElement('iframe');
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+    iframe.src = fileUrl;
+}
+
 //filter in home
 function filterAppointments() {
     var selectedValue = document.getElementById("filter-appointment").value;
@@ -128,6 +136,7 @@ function populateTable() {
             if(appointment.status === 3){
                 btnDownload = createTableButtons('fa-download', 'btn-download');
                 btnDownload.addEventListener('click', () => {
+                    downloadDocument(appointment.appointmentId)
                 });
             }
             if(appointment.status === 1){
@@ -152,7 +161,7 @@ function populateTable() {
 
             // Append buttons to cells
             if(appointment.status === 3){
-                cdownloadCell.appendChild(btnDownload);
+                downloadCell.appendChild(btnDownload);
             }
             if(appointment.status === 1){
                 cancelCell.appendChild(btnCancel);

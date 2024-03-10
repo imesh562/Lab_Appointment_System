@@ -4,6 +4,11 @@ import com.imesh.lab.dao.CustomerHomeDao;
 import com.imesh.lab.dao.CustomerHomeDaoImpl;
 import com.imesh.lab.models.CommonMessageModel;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 
 public class CustomerHomeService {
@@ -38,5 +43,23 @@ public class CustomerHomeService {
         } else {
             return new CommonMessageModel("Appointment cancellation failed", false, null);
         }
+    }
+
+    public void downloadDocument(int userId, int appointmentId, HttpServletResponse res, HttpServletRequest req) throws IOException {
+        String fileName = userId+"-"+appointmentId+".pdf";
+        res.setContentType("application/pdf");
+        res.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("test_results/" + fileName);
+        OutputStream outputStream = res.getOutputStream();
+
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        inputStream.close();
+        outputStream.close();
     }
 }
