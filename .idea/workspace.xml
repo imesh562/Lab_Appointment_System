@@ -9,29 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added back end validations to registration.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/LoginDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/LoginDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/LoginModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/LoginService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/utils/encrypter/HashPassword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/login-js.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/signup/signup-js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added functionality to filter and cancel appointments">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test_results/12345678-1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/RegistrationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AuthenticationDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/RegistrationDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/RegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/login/login-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/signup/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/signup/signup-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +28,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="Jsp File" />
-        <option value="Interface" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -103,9 +96,10 @@
     "Smart Tomcat.TomCat 9.executor": "Run",
     "Tomcat Server.Tomcat 9.0.85.executor": "Run",
     "Tomcat Server.index.jsp.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "customer__section__dev",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/webapp/assets/signup",
+    "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/resources/test_results",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -125,12 +119,22 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/test_results" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/customer/images" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/signup" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/images" />
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/admin" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/customer" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.imesh.lab.utils.filters" />
+      <recent name="com.imesh.lab.controllers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -178,7 +182,26 @@
       <workItem from="1707632916937" duration="843000" />
       <workItem from="1707638963506" duration="17565000" />
       <workItem from="1707836226462" duration="2517000" />
-      <workItem from="1707875952700" duration="84325000" />
+      <workItem from="1707875952700" duration="84501000" />
+      <workItem from="1708274093478" duration="12577000" />
+      <workItem from="1708291992129" duration="3440000" />
+      <workItem from="1708443201007" duration="119000" />
+      <workItem from="1708522054045" duration="6937000" />
+      <workItem from="1708616278640" duration="508000" />
+      <workItem from="1708619664633" duration="26000" />
+      <workItem from="1708799253699" duration="22995000" />
+      <workItem from="1709051068553" duration="3523000" />
+      <workItem from="1709131833415" duration="13628000" />
+      <workItem from="1709381915863" duration="15455000" />
+      <workItem from="1709458543463" duration="14950000" />
+      <workItem from="1709648073982" duration="9826000" />
+      <workItem from="1709663317659" duration="612000" />
+      <workItem from="1709750229150" duration="3238000" />
+      <workItem from="1709828677964" duration="7425000" />
+      <workItem from="1709968462185" duration="30000" />
+      <workItem from="1710003093634" duration="5444000" />
+      <workItem from="1710057078902" duration="1639000" />
+      <workItem from="1710082522901" duration="12596000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -260,7 +283,143 @@
       <option name="project" value="LOCAL" />
       <updated>1708112501716</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Completed the Login &amp; Registration features.">
+      <option name="closed" value="true" />
+      <created>1708198901342</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708198901342</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Completed the Admin &amp; User redirections">
+      <option name="closed" value="true" />
+      <created>1708286646416</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708286646416</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Completed the Admin &amp; User redirections">
+      <option name="closed" value="true" />
+      <created>1708295373825</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708295373825</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Completed the Admin &amp; User redirections">
+      <option name="closed" value="true" />
+      <created>1708295417450</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708295417450</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Implemented the backend for getting the lab tests list.">
+      <option name="closed" value="true" />
+      <created>1708533940554</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708533940554</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Tested the Newly added feature">
+      <option name="closed" value="true" />
+      <created>1708536478845</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708536478845</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Customer front end development is completed.">
+      <option name="closed" value="true" />
+      <created>1708806838612</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708806838612</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add appointment is in progress.">
+      <option name="closed" value="true" />
+      <created>1709055239500</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709055239500</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refactored the code and add the functionality to get the available dates when making the appointment.">
+      <option name="closed" value="true" />
+      <created>1709147264289</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709147264289</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Completed the front end part of the add new appointment.">
+      <option name="closed" value="true" />
+      <created>1709402068009</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709402068009</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Completed the front end part of the add new appointment.">
+      <option name="closed" value="true" />
+      <created>1709402570937</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1709402570937</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Completed the Appointment creation from backend.">
+      <option name="closed" value="true" />
+      <created>1709498875122</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1709498875122</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Fixed a backend bug on selected Date">
+      <option name="closed" value="true" />
+      <created>1709501196020</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1709501196020</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Completed the appointment creation">
+      <option name="closed" value="true" />
+      <created>1709662210053</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1709662210054</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Refactored the appointment creation code.">
+      <option name="closed" value="true" />
+      <created>1709753447247</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1709753447247</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added data to the Customer table">
+      <option name="closed" value="true" />
+      <created>1709837670957</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1709837670957</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Added functionality to filter and cancel appointments">
+      <option name="closed" value="true" />
+      <created>1710011074351</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1710011074351</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,6 +435,20 @@
     <MESSAGE value="Completed Pre Login UI designing and partially finished registration." />
     <MESSAGE value="Added Email sending service." />
     <MESSAGE value="Added back end validations to registration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added back end validations to registration." />
+    <MESSAGE value="Completed the Login &amp; Registration features." />
+    <MESSAGE value="Completed the Admin &amp; User redirections" />
+    <MESSAGE value="Implemented the backend for getting the lab tests list." />
+    <MESSAGE value="Tested the Newly added feature" />
+    <MESSAGE value="Customer front end development is completed." />
+    <MESSAGE value="Add appointment is in progress." />
+    <MESSAGE value="Refactored the code and add the functionality to get the available dates when making the appointment." />
+    <MESSAGE value="Completed the front end part of the add new appointment." />
+    <MESSAGE value="Completed the Appointment creation from backend." />
+    <MESSAGE value="Fixed a backend bug on selected Date" />
+    <MESSAGE value="Completed the appointment creation" />
+    <MESSAGE value="Refactored the appointment creation code." />
+    <MESSAGE value="Added data to the Customer table" />
+    <MESSAGE value="Added functionality to filter and cancel appointments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to filter and cancel appointments" />
   </component>
 </project>

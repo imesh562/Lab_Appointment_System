@@ -22,7 +22,6 @@ public class LoginDaoImpl implements LoginDao{
     }
     @Override
     public boolean loginUser(LoginModel loginModel, HttpServletRequest req) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
-        System.out.println(getEncrypter().hashPassword(loginModel.getPassword()));
         Connection connection = getDbConnection();
         String query = "SELECT * FROM User WHERE id = ? AND password = ?";
         PreparedStatement statement = connection.prepareStatement(query);

@@ -1,10 +1,11 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" id="WebApp_ID"
+         version="2.5">
 
-<web-app>
   <display-name>ABC Labs</display-name>
-
+  <welcome-file-list>
+    <welcome-file>customer_index.jsp</welcome-file>
+  </welcome-file-list>
 
   <!-- Filters -->
   <filter>
@@ -12,42 +13,74 @@
     <filter-class>com.imesh.lab.utils.filters.SessionFilter</filter-class>
   </filter>
 
+  <filter>
+    <filter-name>AdminRedirectFilter</filter-name>
+    <filter-class>com.imesh.lab.utils.filters.AdminRedirectFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>CustomerRedirectFilter</filter-name>
+    <filter-class>com.imesh.lab.utils.filters.CustomerRedirectFilter</filter-class>
+  </filter>
+
   <!-- Filter Mappings-->
   <filter-mapping>
     <filter-name>SessionFilter</filter-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/customer_index.jsp</url-pattern>
   </filter-mapping>
 
   <filter-mapping>
     <filter-name>SessionFilter</filter-name>
-    <url-pattern>/index.jsp</url-pattern>
+    <url-pattern>/add_appointment.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/admin_index.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>AdminRedirectFilter</filter-name>
+    <url-pattern>/customer_index.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>AdminRedirectFilter</filter-name>
+    <url-pattern>/add_appointment.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>CustomerRedirectFilter</filter-name>
+    <url-pattern>/admin_index.jsp</url-pattern>
   </filter-mapping>
 
   <!-- Controllers-->
   <servlet>
-    <servlet-name>HomeController</servlet-name>
-    <display-name>HomeController</display-name>
-    <servlet-class>com.imesh.lab.controllers.HomeController</servlet-class>
-  </servlet>
-
-  <servlet>
     <servlet-name>RegistrationController</servlet-name>
-    <display-name>RegistrationController</display-name>
     <servlet-class>com.imesh.lab.controllers.RegistrationController</servlet-class>
   </servlet>
 
   <servlet>
     <servlet-name>LoginController</servlet-name>
-    <display-name>LoginController</display-name>
     <servlet-class>com.imesh.lab.controllers.LoginController</servlet-class>
   </servlet>
 
-  <!-- Controller Mapping-->
-  <servlet-mapping>
-    <servlet-name>HomeController</servlet-name>
-    <url-pattern>/index.jsp</url-pattern>
-  </servlet-mapping>
+  <servlet>
+    <servlet-name>CustomerHomeController</servlet-name>
+    <servlet-class>com.imesh.lab.controllers.CustomerHomeController</servlet-class>
+  </servlet>
 
+  <servlet>
+    <servlet-name>AdminHomeController</servlet-name>
+    <servlet-class>com.imesh.lab.controllers.AdminHomeController</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>NewAppointmentController</servlet-name>
+    <servlet-class>com.imesh.lab.controllers.NewAppointmentController</servlet-class>
+  </servlet>
+
+  <!-- Controller Mapping-->
   <servlet-mapping>
     <servlet-name>RegistrationController</servlet-name>
     <url-pattern>/Register</url-pattern>
@@ -56,6 +89,26 @@
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
     <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>CustomerHomeController</servlet-name>
+    <url-pattern>/CustomerLogout</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminHomeController</servlet-name>
+    <url-pattern>/AdminLogout</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>NewAppointmentController</servlet-name>
+    <url-pattern>/AddNewAppointment</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>CustomerHomeController</servlet-name>
+    <url-pattern>/CustomerHomeData</url-pattern>
   </servlet-mapping>
 </web-app>
 

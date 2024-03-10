@@ -72,7 +72,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Override
     public boolean checkIfUserExists(String email, String mobileNumber) throws SQLException, ClassNotFoundException {
        Connection connection = getDbConnection();
-        String query = "SELECT COUNT(*) AS count FROM User WHERE e_mail = ? OR phone_number = ?";
+        String query = "SELECT COUNT(*) AS count FROM User WHERE (e_mail = ? OR phone_number = ?) AND user_type = 2";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, email);
         statement.setString(2, mobileNumber);

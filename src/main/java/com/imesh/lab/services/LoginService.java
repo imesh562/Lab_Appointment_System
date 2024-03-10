@@ -26,9 +26,9 @@ public class LoginService {
     public CommonMessageModel loginUser(LoginModel loginModel, HttpServletRequest req) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         boolean isSuccess = getLoginDao().loginUser(loginModel, req);
         if(isSuccess){
-            return new CommonMessageModel("Login Successfully", true);
+            return new CommonMessageModel("Login Successfully", true, null);
         } else {
-            return new CommonMessageModel("Incorrect Credentials", false);
+            return new CommonMessageModel("Incorrect Credentials", false, null);
         }
     }
 }

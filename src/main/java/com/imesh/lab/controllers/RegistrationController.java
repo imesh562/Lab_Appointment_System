@@ -39,7 +39,7 @@ public class RegistrationController extends HttpServlet {
     }
 
     void registerUser(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false);
+        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false, null);
         try {
             UserModel userData = new Gson().fromJson(getDataMapper().mapData(req), UserModel.class);
             userData.setId(getRegistrationService().generateUserCode());
@@ -55,7 +55,7 @@ public class RegistrationController extends HttpServlet {
                                 "If you have any questions or need further assistance, please don't hesitate to reach out to our support team.");
             }
         } catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
-            message = new CommonMessageModel("Something went wrong.", false);
+            message = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
         } finally {
             req.setAttribute("message", message.getMessage());

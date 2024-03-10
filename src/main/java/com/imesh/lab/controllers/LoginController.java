@@ -36,12 +36,12 @@ public class LoginController extends HttpServlet {
     }
 
     void loginUser(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false);
+        CommonMessageModel message = new CommonMessageModel("Something went wrong.", false, null);
         try {
             LoginModel loginData = new Gson().fromJson(getDataMapper().mapData(req), LoginModel.class);
             message = getLoginService().loginUser(loginData, req);
         } catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
-            message = new CommonMessageModel("Something went wrong.", false);
+            message = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
         } finally {
             if (!message.isSuccess()) {
@@ -51,7 +51,13 @@ public class LoginController extends HttpServlet {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
                 requestDispatcher.forward(req, res);
             } else {
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+                int userType = (int) req.getSession().getAttribute("user_type");
+                RequestDispatcher requestDispatcher = null;
+                if (userType == 1) {
+                    requestDispatcher = req.getRequestDispatcher("/admin_index.jsp");
+                } else {
+                    requestDispatcher = req.getRequestDispatcher("/customer_index.jsp");
+                }
                 requestDispatcher.forward(req, res);
             }
         }
