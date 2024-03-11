@@ -93,22 +93,17 @@
 
   <servlet-mapping>
     <servlet-name>CustomerHomeController</servlet-name>
-    <url-pattern>/CustomerLogout</url-pattern>
+    <url-pattern>/CustomerHomeData</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>AdminHomeController</servlet-name>
-    <url-pattern>/AdminLogout</url-pattern>
+    <url-pattern>/AdminHomeData</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>NewAppointmentController</servlet-name>
     <url-pattern>/AddNewAppointment</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>CustomerHomeController</servlet-name>
-    <url-pattern>/CustomerHomeData</url-pattern>
   </servlet-mapping>
 </web-app>
 

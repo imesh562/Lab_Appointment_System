@@ -9,14 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added functionality to filter and cancel appointments">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test_results/12345678-1.pdf" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added the file download functionality">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AdminHomeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/admin_index/admin_index-js.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/admin_index/admin_index-style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AppointmentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AppointmentDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin_index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" afterDir="false" />
     </list>
@@ -39,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="customer_section_dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,7 +100,7 @@
     "Smart Tomcat.TomCat 9.executor": "Run",
     "Tomcat Server.Tomcat 9.0.85.executor": "Run",
     "Tomcat Server.index.jsp.executor": "Run",
-    "git-widget-placeholder": "customer__section__dev",
+    "git-widget-placeholder": "admin__section__dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/resources/test_results",
     "list.type.of.created.stylesheet": "CSS",
@@ -120,10 +124,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/test_results" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/admin_index" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/customer/images" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/signup" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/images" />
@@ -133,6 +137,8 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/customer" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.imesh.lab.dao" />
+      <recent name="com.imesh.lab.services" />
       <recent name="com.imesh.lab.utils.filters" />
       <recent name="com.imesh.lab.controllers" />
     </key>
@@ -201,7 +207,9 @@
       <workItem from="1709968462185" duration="30000" />
       <workItem from="1710003093634" duration="5444000" />
       <workItem from="1710057078902" duration="1639000" />
-      <workItem from="1710082522901" duration="12596000" />
+      <workItem from="1710082522901" duration="12740000" />
+      <workItem from="1710098400672" duration="163000" />
+      <workItem from="1710177371082" duration="4823000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -419,7 +427,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710011074351</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added the file download functionality">
+      <option name="closed" value="true" />
+      <created>1710097902041</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1710097902041</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added the file download functionality">
+      <option name="closed" value="true" />
+      <created>1710097936717</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1710097936717</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,6 +473,7 @@
     <MESSAGE value="Refactored the appointment creation code." />
     <MESSAGE value="Added data to the Customer table" />
     <MESSAGE value="Added functionality to filter and cancel appointments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to filter and cancel appointments" />
+    <MESSAGE value="Added the file download functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the file download functionality" />
   </component>
 </project>
