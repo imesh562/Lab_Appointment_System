@@ -1,15 +1,17 @@
 package com.imesh.lab.services;
 
 import com.imesh.lab.dao.AdminHomeDaoImpl;
-import com.imesh.lab.dao.CustomerHomeDao;
-import com.imesh.lab.dao.CustomerHomeDaoImpl;
 import com.imesh.lab.models.CommonMessageModel;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import javax.servlet.http.Part;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 
 public class AdminHomeService {
@@ -47,20 +49,63 @@ public class AdminHomeService {
     }
 
     public void downloadDocument(int userId, int appointmentId, HttpServletResponse res, HttpServletRequest req) throws IOException {
-        String fileName = userId+"-"+appointmentId+".pdf";
-        res.setContentType("application/pdf");
-        res.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        String fileName = userId + "-" + appointmentId + ".pdf";
+        String filePath = req.getServletContext().getRealPath("/test_results/") + File.separator + fileName;
+        File file = new File(filePath);
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("test_results/" + fileName);
-        OutputStream outputStream = res.getOutputStream();
+        if (file.exists()) {
+            res.setContentType("application/pdf");
+            res.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
-        byte[] buffer = new byte[4096];
-        int bytesRead = -1;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+            try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream = res.getOutputStream()) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+    public CommonMessageModel confirmPayment(int appointmentId) throws SQLException, ClassNotFoundException {
+        boolean isSuccess = getAdminHomeDao().confirmPayment(appointmentId);
+        if (isSuccess) {
+            return new CommonMessageModel("Payment confirmed successfully", true, null);
+        } else {
+            return new CommonMessageModel("Payment failed", false, null);
+        }
+    }
+
+    public CommonMessageModel uploadDocument(HttpServletRequest req) throws SQLException, ClassNotFoundException, ServletException, IOException {
+
+        Part filePart = req.getPart("file");
+        int appointmentId  = Integer.parseInt(req.getParameter("appointmentId"));
+        int customerId  = Integer.parseInt(req.getParameter("customerId"));
+        String newFileName = customerId+"-"+appointmentId+".pdf";
+
+        if (filePart.getSize() > 10 * 1024 * 1024) {
+            return new CommonMessageModel("File size exceeds 10MB limit.", false, null);
         }
 
-        inputStream.close();
-        outputStream.close();
+        InputStream fileContent = filePart.getInputStream();
+        String uploadDir = req.getServletContext().getRealPath("test_results");
+        File directory = new File(uploadDir);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        Path filePath = Paths.get(uploadDir, newFileName);
+        Files.copy(fileContent, filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        boolean isSuccess = getAdminHomeDao().changeStatus(appointmentId);
+        if (isSuccess) {
+            return new CommonMessageModel("File uploaded successfully", true, null);
+        } else {
+            return new CommonMessageModel("File uploaded failed", false, null);
+        }
+
     }
 }

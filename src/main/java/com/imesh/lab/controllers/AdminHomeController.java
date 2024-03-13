@@ -7,13 +7,19 @@ import com.imesh.lab.services.AdminHomeService;
 import com.imesh.lab.services.CustomerHomeService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.*;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 
+@MultipartConfig
 public class AdminHomeController extends HttpServlet {
 
     private static AdminHomeService getAdminHomeService() {
@@ -41,6 +47,39 @@ public class AdminHomeController extends HttpServlet {
             case "CancelAppointment":
                 cancelAppointment(req, res);
                 break;
+            case "ConfirmPayment":
+                confirmPayment(req, res);
+                break;
+            case "FileUpload":
+                uploadDocument(req, res);
+                break;
+        }
+    }
+
+    private void uploadDocument(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
+        try {
+            response = getAdminHomeService().uploadDocument(req);
+        } catch (ClassNotFoundException | SQLException e) {
+            response = new CommonMessageModel("Something went wrong.", false, null);
+            e.printStackTrace();
+        } finally {
+            res.setContentType("text/plain");
+            res.getWriter().print(new Gson().toJson(response));
+        }
+    }
+
+    private void confirmPayment(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
+        try {
+            int appointmentId = Integer.parseInt((req.getParameter("appointmentId")));
+            response = getAdminHomeService().confirmPayment(appointmentId);
+        } catch (ClassNotFoundException | SQLException e) {
+            response = new CommonMessageModel("Something went wrong.", false, null);
+            e.printStackTrace();
+        } finally {
+            res.setContentType("text/plain");
+            res.getWriter().print(new Gson().toJson(response));
         }
     }
 

@@ -87,4 +87,32 @@ public class AdminHomeDaoImpl implements AdminHomeDao{
 
         return rowsAffected > 0;
     }
+
+    @Override
+    public boolean confirmPayment(int appointmentId) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String query = "UPDATE Appointments JOIN Payments ON Appointments.payment_id = Payments.payment_id SET Appointments.status = 2, Payments.status = 1 WHERE Appointments.appointment_id = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, appointmentId);
+        int rowsAffected = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+
+        return rowsAffected > 0;
+    }
+
+    @Override
+    public boolean changeStatus(int appointmentId) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String query = "UPDATE Appointments SET status = 3 WHERE appointment_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, appointmentId);
+        int rowsAffected = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+
+        return rowsAffected > 0;
+    }
 }

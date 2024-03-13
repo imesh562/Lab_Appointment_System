@@ -83,13 +83,11 @@ function downloadDocument(appointmentId) {
     iframe.src = fileUrl;
 }
 
-//filter in home
 function filterAppointments() {
     var selectedValue = document.getElementById("filter-appointment").value;
     getTableData("&filter="+selectedValue);
 }
 
-//create buttons to the table
 function createTableButtons(iconClass, buttonClass) {
     const button = document.createElement('button');
     const icon = document.createElement('i');
@@ -99,18 +97,13 @@ function createTableButtons(iconClass, buttonClass) {
     return button;
 }
 
-//Function to populate the table
 function populateTable() {
     const appointmentList = document.getElementById('appointments-list');
 
-    //check appintmentList exist
     if (appointmentList) {
-        // Loop the appointments obj
         appointments.forEach(appointment => {
-            // Create a new table row
             const row = document.createElement('tr');
 
-            // Create table cells
             const testNameCell = document.createElement('td');
             const AppointmentNoCell = document.createElement('td');
             const scheduledTimeCell = document.createElement('td');
@@ -118,7 +111,6 @@ function populateTable() {
             const priceCell = document.createElement('td');
             const statusCell = document.createElement('td');
 
-            // Set the content of the cells
             testNameCell.textContent = appointment.testName;
             AppointmentNoCell.textContent = appointment.appointmentId;
             scheduledTimeCell.textContent = appointment.scheduleTime;
@@ -126,13 +118,11 @@ function populateTable() {
             priceCell.textContent = appointment.amount;
             statusCell.textContent = appointment.statusType;
 
-            // Create table cells for buttons
             const downloadCell = document.createElement('td');
             const cancelCell = document.createElement('td');
             let btnDownload;
             let btnCancel;
 
-            // Create buttons
             if(appointment.status === 3){
                 btnDownload = createTableButtons('fa-download', 'btn-download');
                 btnDownload.addEventListener('click', () => {
@@ -159,7 +149,6 @@ function populateTable() {
                 });
             }
 
-            // Append buttons to cells
             if(appointment.status === 3){
                 downloadCell.appendChild(btnDownload);
             }
@@ -177,7 +166,6 @@ function populateTable() {
             row.appendChild(downloadCell);
             row.appendChild(cancelCell);
 
-            // Append the row to the table body
             appointmentList.appendChild(row);
         });
     }

@@ -75,6 +75,82 @@ function cancelAppointment(appointmentId) {
     });
 }
 
+function uploadFile(appointmentId, customerId) {
+    showLoader();
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    fileInput.accept = 'application/pdf';
+    document.body.appendChild(fileInput);
+    fileInput.click();
+
+    fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file.size > 10 * 1024 * 1024) {
+            Swal.close();
+            showDialogBox('Error', 'File size exceeds 10MB. Please select a smaller file.', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('action-type', "FileUpload");
+        formData.append('appointmentId', appointmentId);
+        formData.append('customerId', customerId);
+
+        fetch('AdminHomeData', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                Swal.close();
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(data => {
+                if (data.isSuccess) {
+                    showDialogBox('Success', data.message, 'success', filterAppointments);
+                } else {
+                    showDialogBox('Error', data.message, 'error', filterAppointments);
+                }
+
+            })
+            .catch(error => {
+                showDialogBox('Error', 'An error occurred while uploading the file.', 'error');
+            })
+            .finally(() => {
+                document.body.removeChild(fileInput);
+            });
+
+    });
+}
+
+function confirmPayment(appointmentId) {
+    showLoader();
+    $.ajax({
+        type: 'POST',
+        url: 'AdminHomeData',
+        data: 'action-type=ConfirmPayment&appointmentId='+appointmentId,
+        error: function(response) {
+            Swal.close();
+            showDialogBox('Something went wrong', 'Please try again', 'error');
+        },
+        success: function(response) {
+            Swal.close();
+            var jsonData = JSON.parse(response);
+            if(jsonData.isSuccess){
+                filterAppointments();
+            } else {
+                showDialogBox('Something went wrong', 'Please try again', 'error');
+            }
+        }
+    });
+}
+
 function downloadDocument(appointmentId, userId) {
     var fileUrl = "AdminHomeData?actionType=DownloadDocument&appointmentId="+appointmentId+"&userId="+userId;
     var iframe = document.createElement('iframe');
@@ -83,13 +159,11 @@ function downloadDocument(appointmentId, userId) {
     iframe.src = fileUrl;
 }
 
-//filter in home
 function filterAppointments() {
     var selectedValue = document.getElementById("filter-appointment").value;
     getTableData("&filter="+selectedValue);
 }
 
-//create buttons to the table
 function createTableButtons(iconClass, buttonClass) {
     const button = document.createElement('button');
     const icon = document.createElement('i');
@@ -99,18 +173,13 @@ function createTableButtons(iconClass, buttonClass) {
     return button;
 }
 
-//Function to populate the table
 function populateTable() {
     const appointmentList = document.getElementById('appointments-list');
 
-    //check appintmentList exist
     if (appointmentList) {
-        // Loop the appointments obj
         appointments.forEach(appointment => {
-            // Create a new table row
             const row = document.createElement('tr');
 
-            // Create table cells
             const testNameCell = document.createElement('td');
             const AppointmentNoCell = document.createElement('td');
             const scheduledTimeCell = document.createElement('td');
@@ -119,7 +188,6 @@ function populateTable() {
             const priceCell = document.createElement('td');
             const statusCell = document.createElement('td');
 
-            // Set the content of the cells
             testNameCell.textContent = appointment.testName;
             AppointmentNoCell.textContent = appointment.appointmentId;
             scheduledTimeCell.textContent = appointment.scheduleTime;
@@ -128,7 +196,6 @@ function populateTable() {
             priceCell.textContent = appointment.amount;
             statusCell.textContent = appointment.statusType;
 
-            // Create table cells for buttons
             const downloadCell = document.createElement('td');
             const proceedCell = document.createElement('td');
             const cancelCell = document.createElement('td');
@@ -146,7 +213,24 @@ function populateTable() {
             if(appointment.status < 3){
                 btnProceed = createTableButtons('fa-arrow-circle-right', 'btn-proceed');
                 btnProceed.addEventListener('click', () => {
-
+                    if(appointment.status === 1){
+                        Swal.fire({
+                            title: 'Confirm Payment',
+                            text: `Please confirm the customer payment.`,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'No'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                confirmPayment(appointment.appointmentId);
+                            }
+                        });
+                    } else if(appointment.status === 2){
+                        uploadFile(appointment.appointmentId, appointment.customerId);
+                    }
                 });
             }
 

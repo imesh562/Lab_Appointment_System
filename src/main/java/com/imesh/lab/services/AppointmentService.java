@@ -111,6 +111,7 @@ public class AppointmentService {
                         "\n" +
                         "Appointment ID: "+ appointmentId +"\n" +
                         "Test Name: "+ test.getTestName()+"\n" +
+                        "Price(LKR): "+ test.getPrice()+"\n" +
                         "Technician Name: "+ test.getTechnician()+"\n" +
                         "Date: "+dateString+"\n" +
                         "Time: "+timeString+"\n" +

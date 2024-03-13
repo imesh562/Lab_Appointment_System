@@ -6,9 +6,7 @@ import com.imesh.lab.models.CommonMessageModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.sql.SQLException;
 
 public class CustomerHomeService {
@@ -46,20 +44,25 @@ public class CustomerHomeService {
     }
 
     public void downloadDocument(int userId, int appointmentId, HttpServletResponse res, HttpServletRequest req) throws IOException {
-        String fileName = userId+"-"+appointmentId+".pdf";
-        res.setContentType("application/pdf");
-        res.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        String fileName = userId + "-" + appointmentId + ".pdf";
+        String filePath = req.getServletContext().getRealPath("/test_results/") + File.separator + fileName;
+        File file = new File(filePath);
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("test_results/" + fileName);
-        OutputStream outputStream = res.getOutputStream();
+        if (file.exists()) {
+            res.setContentType("application/pdf");
+            res.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
-        byte[] buffer = new byte[4096];
-        int bytesRead = -1;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+            try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream = res.getOutputStream()) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            res.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
-
-        inputStream.close();
-        outputStream.close();
     }
 }

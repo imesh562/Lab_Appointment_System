@@ -44,7 +44,7 @@
                 <p style="color: red; font-size: small">Note: Some dates on the calendar may be disabled due to full capacity.</p>
             </div>
             <div class="inp-box">
-                <label for="doctor-name">Doctor's name (Optional) :</label>
+                <label for="doctor-name">Recommended Doctor's name (Optional) :</label>
                 <input type="text" id="doctor-name" name="doctor-name">
             </div>
             <div class="submit-btn-wrapper">
