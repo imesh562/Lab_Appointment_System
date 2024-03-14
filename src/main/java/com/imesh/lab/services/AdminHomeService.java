@@ -2,6 +2,7 @@ package com.imesh.lab.services;
 
 import com.imesh.lab.dao.AdminHomeDaoImpl;
 import com.imesh.lab.models.CommonMessageModel;
+import com.imesh.lab.utils.mail.EmailSender;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,10 @@ public class AdminHomeService {
         return adminHomeService;
     }
 
+    private static EmailSender getEmailSender() {
+        return EmailSender.getEmailSender();
+    }
+
     private AdminHomeDaoImpl getAdminHomeDao() {
         return new AdminHomeDaoImpl();
     }
@@ -39,15 +44,24 @@ public class AdminHomeService {
         return new CommonMessageModel("Data retrieved successfully", true, getAdminHomeDao().getCustomerAppointments(filterCode));
     }
 
-    public CommonMessageModel cancelAppointment(int appointmentId) throws SQLException, ClassNotFoundException {
+    public CommonMessageModel cancelAppointment(int appointmentId, HttpServletRequest req, String email) throws SQLException, ClassNotFoundException {
         boolean isSuccess = getAdminHomeDao().cancelAppointment(appointmentId);
         if (isSuccess) {
+            String name = (String) req.getSession().getAttribute("first_name");
+            getEmailSender().sendMail(email, "Appointment Cancellation - Appointment Number: "+appointmentId,
+                    "Dear "+name+",\n" +
+                            "\n" +
+                            "Your appointment has been canceled. Your appointment number is: "+appointmentId+"\n" +
+                            "\n" +
+                            "Let us know if you need any info.\n" +
+                            "\n" +
+                            "Best regards,\n" +
+                            "ABC Laboratories");
             return new CommonMessageModel("Appointment canceled successfully", true, null);
         } else {
             return new CommonMessageModel("Appointment cancellation failed", false, null);
         }
     }
-
     public void downloadDocument(int userId, int appointmentId, HttpServletResponse res, HttpServletRequest req) throws IOException {
         String fileName = userId + "-" + appointmentId + ".pdf";
         String filePath = req.getServletContext().getRealPath("/test_results/") + File.separator + fileName;
@@ -71,9 +85,23 @@ public class AdminHomeService {
         }
     }
 
-    public CommonMessageModel confirmPayment(int appointmentId) throws SQLException, ClassNotFoundException {
+    public CommonMessageModel confirmPayment(int appointmentId, HttpServletRequest req, String email) throws SQLException, ClassNotFoundException {
         boolean isSuccess = getAdminHomeDao().confirmPayment(appointmentId);
         if (isSuccess) {
+            String name = (String) req.getSession().getAttribute("first_name");
+            getEmailSender().sendMail(email, "Confirmation of Payment Received",
+                    "Dear "+name+",\n" +
+                            "\n" +
+                            "I hope this email finds you well.\n" +
+                            "\n" +
+                            "I wanted to inform you that we have successfully received your payment for appointment number : "+appointmentId+". Thank you for your payment.\n" +
+                            "\n" +
+                            "If you have any questions or concerns regarding this transaction or any other matter, please feel free to reach out to us. We're here to assist you.\n" +
+                            "\n" +
+                            "Thank you once again for your business.\n" +
+                            "\n" +
+                            "Best regards,\n" +
+                            "ABC Laboratories");
             return new CommonMessageModel("Payment confirmed successfully", true, null);
         } else {
             return new CommonMessageModel("Payment failed", false, null);
@@ -85,6 +113,7 @@ public class AdminHomeService {
         Part filePart = req.getPart("file");
         int appointmentId  = Integer.parseInt(req.getParameter("appointmentId"));
         int customerId  = Integer.parseInt(req.getParameter("customerId"));
+        String email  = req.getParameter("customerEmail");
         String newFileName = customerId+"-"+appointmentId+".pdf";
 
         if (filePart.getSize() > 10 * 1024 * 1024) {
@@ -102,6 +131,20 @@ public class AdminHomeService {
 
         boolean isSuccess = getAdminHomeDao().changeStatus(appointmentId);
         if (isSuccess) {
+            String name = (String) req.getSession().getAttribute("first_name");
+            getEmailSender().sendMail(email, "Your Lab Test Results Are Ready for Download",
+                    "Dear "+name+",\n" +
+                            "\n" +
+                            "We hope this email finds you well. We're pleased to inform you that your lab test results are now available for download.\n" +
+                            "\n" +
+                            "You can access your results by logging into our system using your credentials. Once logged in, navigate to the appropriate section to retrieve your test report.\n" +
+                            "\n" +
+                            "If you encounter any difficulties accessing your results or have any questions, please don't hesitate to reach out to us. We're here to assist you.\n" +
+                            "\n" +
+                            "Thank you for choosing us for your healthcare needs.\n" +
+                            "\n" +
+                            "Best regards,\n" +
+                            "ABC Laboratories");
             return new CommonMessageModel("File uploaded successfully", true, null);
         } else {
             return new CommonMessageModel("File uploaded failed", false, null);

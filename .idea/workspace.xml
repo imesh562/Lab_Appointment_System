@@ -9,18 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Completed the Admin home Front end implementation, added the cancel, download functionalities.">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/src/main/resources/test_results/new_filename.pdf" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Completed the Admin home file upload and status change.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/NewAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/NewAppointmentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AdminHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AdminHomeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AppointmentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin_index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/admin_index/admin_index-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/admin_index/admin_index-js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +210,8 @@
       <workItem from="1710098400672" duration="163000" />
       <workItem from="1710177371082" duration="5033000" />
       <workItem from="1710256053363" duration="13608000" />
-      <workItem from="1710342337236" duration="6581000" />
+      <workItem from="1710342337236" duration="6816000" />
+      <workItem from="1710433410353" duration="11166000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -451,7 +453,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710182282945</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Completed the Admin home file upload and status change.">
+      <option name="closed" value="true" />
+      <created>1710350510869</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1710350510869</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,6 +493,7 @@
     <MESSAGE value="Added functionality to filter and cancel appointments" />
     <MESSAGE value="Added the file download functionality" />
     <MESSAGE value="Completed the Admin home Front end implementation, added the cancel, download functionalities." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed the Admin home Front end implementation, added the cancel, download functionalities." />
+    <MESSAGE value="Completed the Admin home file upload and status change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the Admin home file upload and status change." />
   </component>
 </project>

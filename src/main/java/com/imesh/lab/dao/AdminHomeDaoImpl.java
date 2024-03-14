@@ -22,10 +22,10 @@ public class AdminHomeDaoImpl implements AdminHomeDao{
         Connection connection = getDbConnection();
         PreparedStatement statement = null;
         if(filterCode == 0){
-            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id;";
+            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id JOIN User ON Appointments.customer_id = User.id;";
             statement = connection.prepareStatement(query);
         } else {
-            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id WHERE Appointments.status = ?;";
+            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id JOIN User ON Appointments.customer_id = User.id WHERE Appointments.status = ?;";
             statement = connection.prepareStatement(query);
             statement.setInt(1, filterCode);
         }
@@ -59,6 +59,7 @@ public class AdminHomeDaoImpl implements AdminHomeDao{
                             result.getInt("status"),
                             statusType,
                             result.getInt("customer_id"),
+                            result.getString("e_mail"),
                             result.getString("doctor_name"),
                             result.getInt("payment_id"),
                             dateFormat.format(result.getTimestamp("schedule_time")),

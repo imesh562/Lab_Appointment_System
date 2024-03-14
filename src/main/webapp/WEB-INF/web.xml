@@ -54,6 +54,22 @@
     <url-pattern>/admin_index.jsp</url-pattern>
   </filter-mapping>
 
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/CustomerHomeData</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/AdminHomeData</url-pattern>
+  </filter-mapping>
+
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/AddNewAppointment</url-pattern>
+  </filter-mapping>
+
   <!-- Controllers-->
   <servlet>
     <servlet-name>RegistrationController</servlet-name>

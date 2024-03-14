@@ -3,6 +3,7 @@ package com.imesh.lab.services;
 import com.imesh.lab.dao.CustomerHomeDao;
 import com.imesh.lab.dao.CustomerHomeDaoImpl;
 import com.imesh.lab.models.CommonMessageModel;
+import com.imesh.lab.utils.mail.EmailSender;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,10 @@ public class CustomerHomeService {
             customerHomeService = new CustomerHomeService();
         }
         return customerHomeService;
+    }
+
+    private static EmailSender getEmailSender() {
+        return EmailSender.getEmailSender();
     }
 
     private CustomerHomeDao getCustomerHomeDao() {
@@ -34,9 +39,20 @@ public class CustomerHomeService {
         return new CommonMessageModel("Data retrieved successfully", true, getCustomerHomeDao().getCustomerAppointments(userId, filterCode));
     }
 
-    public CommonMessageModel cancelAppointment(int userId, int appointmentId) throws SQLException, ClassNotFoundException {
+    public CommonMessageModel cancelAppointment(int userId, int appointmentId, HttpServletRequest req) throws SQLException, ClassNotFoundException {
         boolean isSuccess = getCustomerHomeDao().cancelAppointment(userId, appointmentId);
         if (isSuccess) {
+            String email = (String) req.getSession().getAttribute("email");
+            String name = (String) req.getSession().getAttribute("first_name");
+            getEmailSender().sendMail(email, "Appointment Cancellation - Appointment Number: "+appointmentId,
+                    "Dear "+name+",\n" +
+                            "\n" +
+                            "Your appointment has been canceled. Your appointment number is: "+appointmentId+"\n" +
+                            "\n" +
+                            "Let us know if you need any info.\n" +
+                            "\n" +
+                            "Best regards,\n" +
+                            "ABC Laboratories");
             return new CommonMessageModel("Appointment canceled successfully", true, null);
         } else {
             return new CommonMessageModel("Appointment cancellation failed", false, null);

@@ -53,12 +53,12 @@ function getTableData(type) {
     });
 }
 
-function cancelAppointment(appointmentId) {
+function cancelAppointment(appointmentId, customerEmail) {
     showLoader();
     $.ajax({
         type: 'POST',
         url: 'AdminHomeData',
-        data: 'action-type=CancelAppointment&appointmentId='+appointmentId,
+        data: 'action-type=CancelAppointment&appointmentId='+appointmentId+"&customerEmail="+customerEmail,
         error: function(response) {
             Swal.close();
             showDialogBox('Something went wrong', 'Please try again', 'error');
@@ -75,7 +75,7 @@ function cancelAppointment(appointmentId) {
     });
 }
 
-function uploadFile(appointmentId, customerId) {
+function uploadFile(appointmentId, customerId, customerEmail) {
     showLoader();
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -97,6 +97,7 @@ function uploadFile(appointmentId, customerId) {
         formData.append('file', file);
         formData.append('action-type', "FileUpload");
         formData.append('appointmentId', appointmentId);
+        formData.append('customerEmail', customerEmail);
         formData.append('customerId', customerId);
 
         fetch('AdminHomeData', {
@@ -129,12 +130,12 @@ function uploadFile(appointmentId, customerId) {
     });
 }
 
-function confirmPayment(appointmentId) {
+function confirmPayment(appointmentId, customerEmail) {
     showLoader();
     $.ajax({
         type: 'POST',
         url: 'AdminHomeData',
-        data: 'action-type=ConfirmPayment&appointmentId='+appointmentId,
+        data: 'action-type=ConfirmPayment&appointmentId='+appointmentId+"&customerEmail="+customerEmail,
         error: function(response) {
             Swal.close();
             showDialogBox('Something went wrong', 'Please try again', 'error');
@@ -225,11 +226,11 @@ function populateTable() {
                             cancelButtonText: 'No'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                confirmPayment(appointment.appointmentId);
+                                confirmPayment(appointment.appointmentId, appointment.email);
                             }
                         });
                     } else if(appointment.status === 2){
-                        uploadFile(appointment.appointmentId, appointment.customerId);
+                        uploadFile(appointment.appointmentId, appointment.customerId, appointment.email);
                     }
                 });
             }
@@ -248,7 +249,7 @@ function populateTable() {
                         cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            cancelAppointment(appointment.appointmentId)
+                            cancelAppointment(appointment.appointmentId, appointment.email)
                         }
                     });
                 });

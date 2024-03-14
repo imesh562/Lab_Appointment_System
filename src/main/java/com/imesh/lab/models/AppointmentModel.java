@@ -7,6 +7,7 @@ public class AppointmentModel {
     final int status;
     final String statusType;
     final int customerId;
+    final String email;
     final String doctorName;
     final int paymentId;
     final String scheduleTime;
@@ -20,6 +21,8 @@ public class AppointmentModel {
     public String getStatusType() {
         return statusType;
     }
+
+    public String getEmail() {return email;}
 
     public int getTestId() {
         return testId;
@@ -57,13 +60,14 @@ public class AppointmentModel {
         return amount;
     }
 
-    public AppointmentModel(int appointmentId, int testId, String createdDate, int status, String statusType, int customerId, String doctorName, int paymentId, String scheduleTime, String testName, double amount) {
+    public AppointmentModel(int appointmentId, int testId, String createdDate, int status, String statusType, int customerId, String email, String doctorName, int paymentId, String scheduleTime, String testName, double amount) {
         this.appointmentId = appointmentId;
         this.testId = testId;
         this.createdDate = createdDate;
         this.status = status;
         this.statusType = statusType;
         this.customerId = customerId;
+        this.email = email;
         this.doctorName = doctorName;
         this.paymentId = paymentId;
         this.scheduleTime = scheduleTime;
