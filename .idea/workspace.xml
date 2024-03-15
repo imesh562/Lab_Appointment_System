@@ -9,19 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Completed the Admin home file upload and status change.">
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Fixed security issues and add email sending feature on status change.">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/test_results/12345678-1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/AdminHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/NewAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/NewAppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/AdminHomeDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AdminHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/AdminHomeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin_index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/admin_index/admin_index-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/admin_index/admin_index-js.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +201,8 @@
       <workItem from="1710177371082" duration="5033000" />
       <workItem from="1710256053363" duration="13608000" />
       <workItem from="1710342337236" duration="6816000" />
-      <workItem from="1710433410353" duration="11166000" />
+      <workItem from="1710433410353" duration="11393000" />
+      <workItem from="1710483741474" duration="980000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -461,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710350510869</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixed security issues and add email sending feature on status change.">
+      <option name="closed" value="true" />
+      <created>1710446650987</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1710446650988</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +468,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial Project Setup" />
     <MESSAGE value="Updated the jUnit version" />
     <MESSAGE value="Added implementations for Database connection." />
     <MESSAGE value="Made changes to project to work with STS." />
@@ -494,6 +492,7 @@
     <MESSAGE value="Added the file download functionality" />
     <MESSAGE value="Completed the Admin home Front end implementation, added the cancel, download functionalities." />
     <MESSAGE value="Completed the Admin home file upload and status change." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed the Admin home file upload and status change." />
+    <MESSAGE value="Fixed security issues and add email sending feature on status change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed security issues and add email sending feature on status change." />
   </component>
 </project>
