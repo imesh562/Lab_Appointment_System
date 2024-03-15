@@ -121,10 +121,11 @@ public class AppointmentDaoImpl implements AppointmentDao{
     @Override
     public int addNewPayment(double amount) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
-        String query = "INSERT INTO Payments (amount) VALUES (?)";
+        String query = "INSERT INTO Payments (amount, status) VALUES (?, ?)";
         PreparedStatement statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
         statement.setDouble(1, amount);
+        statement.setInt(2, 0);
         statement.executeUpdate();
 
         ResultSet generatedKeys = statement.getGeneratedKeys();

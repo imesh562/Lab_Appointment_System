@@ -22,7 +22,7 @@
     <a class="nav-link" id="nav-add-appointment" href="AddNewAppointment">
         <i class="fa fa-plus-circle"></i>
     </a>
-    <a class="nav-link" href="CustomerLogout?actionType=Logout">
+    <a class="nav-link" href="CustomerHomeData?actionType=Logout">
         <i class="fa fa-sign-out"></i>
     </a>
 </div>
@@ -44,7 +44,7 @@
                 <p style="color: red; font-size: small">Note: Some dates on the calendar may be disabled due to full capacity.</p>
             </div>
             <div class="inp-box">
-                <label for="doctor-name">Doctor's name (Optional) :</label>
+                <label for="doctor-name">Recommended Doctor's name (Optional) :</label>
                 <input type="text" id="doctor-name" name="doctor-name">
             </div>
             <div class="submit-btn-wrapper">

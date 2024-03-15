@@ -50,7 +50,11 @@ public class NewAppointmentController extends HttpServlet {
     private void addNewAppointment(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         try {
-            response = getAppointmentService().addNewAppointment(req, getDataMapper(), getEmailSender());
+            if (req.getSession(false).getAttribute("id") != null) {
+                response = getAppointmentService().addNewAppointment(req, getDataMapper(), getEmailSender());
+            } else {
+                response = new CommonMessageModel("Session Expired.", false, null);
+            }
         } catch (ClassNotFoundException | SQLException | ParseException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
@@ -63,8 +67,12 @@ public class NewAppointmentController extends HttpServlet {
     private void getDisabledDates(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         try {
-            int test_id = Integer.parseInt(req.getParameter("testId"));
-            response = getAppointmentService().getDisabledDates(test_id);
+            if (req.getSession(false).getAttribute("id") != null) {
+                int test_id = Integer.parseInt(req.getParameter("testId"));
+                response = getAppointmentService().getDisabledDates(test_id);
+            } else {
+                response = new CommonMessageModel("Session Expired.", false, null);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
@@ -78,8 +86,12 @@ public class NewAppointmentController extends HttpServlet {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         List<TestModel> tests =  new ArrayList<>();
         try {
-            response = getAppointmentService().getAllLabTests();
-            tests.addAll(response.getData());
+            if (req.getSession(false).getAttribute("id") != null) {
+                response = getAppointmentService().getAllLabTests();
+                tests.addAll(response.getData());
+            } else {
+                response = new CommonMessageModel("Session Expired.", false, null);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
@@ -90,11 +102,13 @@ public class NewAppointmentController extends HttpServlet {
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/add_appointment.jsp");
                 dispatcher.forward(req, res);
             }else {
-                req.setAttribute("message", response.getMessage());
-                req.setAttribute("title", "Operation Failed.");
-                req.setAttribute("icon", "error");
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/add_appointment.jsp");
-                requestDispatcher.forward(req, res);
+                if (req.getSession(false).getAttribute("id") != null) {
+                    req.setAttribute("message", response.getMessage());
+                    req.setAttribute("title", "Operation Failed.");
+                    req.setAttribute("icon", "error");
+                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("/add_appointment.jsp");
+                    requestDispatcher.forward(req, res);
+                }
             }
         }
     }

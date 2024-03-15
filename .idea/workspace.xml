@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Added functionality to filter and cancel appointments">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test_results/12345678-1.pdf" afterDir="false" />
+    <list default="true" id="728fb51c-212f-4dc2-a067-2648e7e4ab27" name="Changes" comment="Tested the whole app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/controllers/CustomerHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/dao/CustomerHomeDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/models/AppointmentModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imesh/lab/services/CustomerHomeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/add_appointment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/customer_index/customer_index-js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer_index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="customer_section_dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -85,45 +77,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Mail.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Smart Tomcat.TomCat 9.executor": "Run",
-    "Tomcat Server.Tomcat 9.0.85.executor": "Run",
-    "Tomcat Server.index.jsp.executor": "Run",
-    "git-widget-placeholder": "customer__section__dev",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/resources/test_results",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Mail.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Smart Tomcat.TomCat 9.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.85.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.index.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;admin__section__dev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/imeshgunathilaka/Documents/Study/Assignments/Advanced Progamming/Project/Lab-Appointment-System/src/main/resources/test_results&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/test_results" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/admin_index" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/customer/images" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/signup" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/images" />
@@ -133,6 +125,8 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/customer" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.imesh.lab.dao" />
+      <recent name="com.imesh.lab.services" />
       <recent name="com.imesh.lab.utils.filters" />
       <recent name="com.imesh.lab.controllers" />
     </key>
@@ -201,7 +195,13 @@
       <workItem from="1709968462185" duration="30000" />
       <workItem from="1710003093634" duration="5444000" />
       <workItem from="1710057078902" duration="1639000" />
-      <workItem from="1710082522901" duration="12596000" />
+      <workItem from="1710082522901" duration="12740000" />
+      <workItem from="1710098400672" duration="163000" />
+      <workItem from="1710177371082" duration="5033000" />
+      <workItem from="1710256053363" duration="13608000" />
+      <workItem from="1710342337236" duration="6816000" />
+      <workItem from="1710433410353" duration="11393000" />
+      <workItem from="1710483741474" duration="1315000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Project Setup">
       <option name="closed" value="true" />
@@ -419,7 +419,55 @@
       <option name="project" value="LOCAL" />
       <updated>1710011074351</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added the file download functionality">
+      <option name="closed" value="true" />
+      <created>1710097902041</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1710097902041</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added the file download functionality">
+      <option name="closed" value="true" />
+      <created>1710097936717</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1710097936717</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Completed the Admin home Front end implementation, added the cancel, download functionalities.">
+      <option name="closed" value="true" />
+      <created>1710182282945</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1710182282945</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Completed the Admin home file upload and status change.">
+      <option name="closed" value="true" />
+      <created>1710350510869</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1710350510869</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fixed security issues and add email sending feature on status change.">
+      <option name="closed" value="true" />
+      <created>1710446650987</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1710446650988</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Tested the whole app">
+      <option name="closed" value="true" />
+      <created>1710485924903</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1710485924903</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -427,8 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial Project Setup" />
-    <MESSAGE value="Updated the jUnit version" />
     <MESSAGE value="Added implementations for Database connection." />
     <MESSAGE value="Made changes to project to work with STS." />
     <MESSAGE value="Created login &amp; Registration UI's" />
@@ -449,6 +495,11 @@
     <MESSAGE value="Refactored the appointment creation code." />
     <MESSAGE value="Added data to the Customer table" />
     <MESSAGE value="Added functionality to filter and cancel appointments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to filter and cancel appointments" />
+    <MESSAGE value="Added the file download functionality" />
+    <MESSAGE value="Completed the Admin home Front end implementation, added the cancel, download functionalities." />
+    <MESSAGE value="Completed the Admin home file upload and status change." />
+    <MESSAGE value="Fixed security issues and add email sending feature on status change." />
+    <MESSAGE value="Tested the whole app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested the whole app" />
   </component>
 </project>

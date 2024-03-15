@@ -3,30 +3,31 @@ package com.imesh.lab.dao;
 import com.imesh.lab.models.AppointmentModel;
 import com.imesh.lab.utils.database.ConnectionFactory;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerHomeDaoImpl implements CustomerHomeDao{
+public class AdminHomeDaoImpl implements AdminHomeDao{
 
     private Connection getDbConnection() throws ClassNotFoundException, SQLException {
         return new ConnectionFactory().getDatabase().getConnection();
     }
     @Override
-    public List<AppointmentModel> getCustomerAppointments(int userId, int filterCode) throws SQLException, ClassNotFoundException {
+    public List<AppointmentModel> getCustomerAppointments(int filterCode) throws SQLException, ClassNotFoundException {
         List<AppointmentModel> appointments = new ArrayList<>();
         Connection connection = getDbConnection();
         PreparedStatement statement = null;
         if(filterCode == 0){
-            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id WHERE Appointments.customer_id = ?;";
+            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id JOIN User ON Appointments.customer_id = User.id;";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, userId);
         } else {
-            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id WHERE Appointments.customer_id = ? AND Appointments.status = ?;";
+            String query = "SELECT * FROM Appointments JOIN Tests ON Appointments.test_id = Tests.test_id JOIN Payments ON Appointments.payment_id = Payments.payment_id JOIN User ON Appointments.customer_id = User.id WHERE Appointments.status = ?;";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, userId);
-            statement.setInt(2, filterCode);
+            statement.setInt(1, filterCode);
         }
         ResultSet result = statement.executeQuery();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy h:mm a");
@@ -58,7 +59,7 @@ public class CustomerHomeDaoImpl implements CustomerHomeDao{
                             result.getInt("status"),
                             statusType,
                             result.getInt("customer_id"),
-                            null,
+                            result.getString("e_mail"),
                             result.getString("doctor_name"),
                             result.getInt("payment_id"),
                             dateFormat.format(result.getTimestamp("schedule_time")),
@@ -74,13 +75,40 @@ public class CustomerHomeDaoImpl implements CustomerHomeDao{
     }
 
     @Override
-    public boolean cancelAppointment(int userId, int filterCode) throws SQLException, ClassNotFoundException {
+    public boolean cancelAppointment(int appointmentId) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
-        String query = "UPDATE Appointments SET status = 4 WHERE customer_id = ? AND appointment_id = ?";
+        String query = "UPDATE Appointments SET status = 4 WHERE appointment_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
 
-        statement.setInt(1, userId);
-        statement.setInt(2, filterCode);
+        statement.setInt(1, appointmentId);
+        int rowsAffected = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+
+        return rowsAffected > 0;
+    }
+
+    @Override
+    public boolean confirmPayment(int appointmentId) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String query = "UPDATE Appointments JOIN Payments ON Appointments.payment_id = Payments.payment_id SET Appointments.status = 2, Payments.status = 1 WHERE Appointments.appointment_id = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, appointmentId);
+        int rowsAffected = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+
+        return rowsAffected > 0;
+    }
+
+    @Override
+    public boolean changeStatus(int appointmentId) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String query = "UPDATE Appointments SET status = 3 WHERE appointment_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, appointmentId);
         int rowsAffected = statement.executeUpdate();
 
         statement.close();

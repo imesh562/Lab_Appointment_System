@@ -52,9 +52,13 @@ public class CustomerHomeController extends HttpServlet {
     private void cancelAppointment(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         try {
-            int user_id = (int) req.getSession().getAttribute("id");
-            int appointmentId = Integer.parseInt((req.getParameter("appointmentId")));
-            response = getCustomerHomeService().cancelAppointment(user_id, appointmentId);
+            if (req.getSession(false).getAttribute("id") != null) {
+                int user_id = (int) req.getSession().getAttribute("id");
+                int appointmentId = Integer.parseInt((req.getParameter("appointmentId")));
+                response = getCustomerHomeService().cancelAppointment(user_id, appointmentId, req);
+            } else {
+                response = new CommonMessageModel("Session Expired.", false, null);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
@@ -67,9 +71,13 @@ public class CustomerHomeController extends HttpServlet {
     private void getCustomerTableData(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CommonMessageModel response = new CommonMessageModel("Something went wrong.", false, null);
         try {
-            int userId = (int) req.getSession().getAttribute("id");
-            String filter = (String) req.getParameter("filter");
-            response = getCustomerHomeService().getCustomerAppointments(userId, filter);
+            if (req.getSession(false).getAttribute("id") != null) {
+                int userId = (int) req.getSession().getAttribute("id");
+                String filter = (String) req.getParameter("filter");
+                response = getCustomerHomeService().getCustomerAppointments(userId, filter);
+            } else {
+                response = new CommonMessageModel("Session Expired.", false, null);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             response = new CommonMessageModel("Something went wrong.", false, null);
             e.printStackTrace();
@@ -81,10 +89,9 @@ public class CustomerHomeController extends HttpServlet {
 
     private void logOutCustomer(HttpServletRequest req, HttpServletResponse res) throws IOException {
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session.getAttribute("id") != null) {
             session.invalidate();
+            res.sendRedirect(req.getContextPath()+"/login.jsp");
         }
-        res.sendRedirect(req.getContextPath()+"/login.jsp");
     }
-
 }

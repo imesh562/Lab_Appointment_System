@@ -54,6 +54,22 @@
     <url-pattern>/admin_index.jsp</url-pattern>
   </filter-mapping>
 
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/CustomerHomeData</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/AdminHomeData</url-pattern>
+  </filter-mapping>
+
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/AddNewAppointment</url-pattern>
+  </filter-mapping>
+
   <!-- Controllers-->
   <servlet>
     <servlet-name>RegistrationController</servlet-name>
@@ -93,22 +109,17 @@
 
   <servlet-mapping>
     <servlet-name>CustomerHomeController</servlet-name>
-    <url-pattern>/CustomerLogout</url-pattern>
+    <url-pattern>/CustomerHomeData</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>AdminHomeController</servlet-name>
-    <url-pattern>/AdminLogout</url-pattern>
+    <url-pattern>/AdminHomeData</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>NewAppointmentController</servlet-name>
     <url-pattern>/AddNewAppointment</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>CustomerHomeController</servlet-name>
-    <url-pattern>/CustomerHomeData</url-pattern>
   </servlet-mapping>
 </web-app>
 

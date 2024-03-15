@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Swal.close();
                     var jsonData = JSON.parse(response);
                     if(jsonData.isSuccess){
-                        showDialogBox('Success', 'We have sent you an Email with details regarding your appointment.', 'success', function(){window.history.back();},);
+                        showDialogBox('Success', 'We have sent you an Email with details regarding your appointment.', 'success', function(){window.history.back();});
                     } else {
                         showDialogBox('Failure', jsonData.message, 'error');
                     }
